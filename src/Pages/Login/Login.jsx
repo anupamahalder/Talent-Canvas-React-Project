@@ -2,10 +2,12 @@ import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import {BsEyeSlashFill} from 'react-icons/bs';
 import {IoEyeSharp} from 'react-icons/io5';
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Login = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
     // destructure authContext 
     const {login, googleSignIn} = useAuth();
     // declare a state to track the visibility of password 
@@ -25,6 +27,7 @@ const Login = () => {
                 text: 'You have successfully logged in',
                 icon: 'success'
             })
+            navigate(location?.state ? location?.state : '/');
         })
         .catch(err=>{
             console.log(err.message);
@@ -47,6 +50,7 @@ const Login = () => {
                 text: 'You have successfully logged in',
                 icon: 'success'
             })
+            navigate(location?.state ? location?.state : '/');
         })
         .catch(err=>{
             console.log(err.message);
