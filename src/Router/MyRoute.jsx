@@ -12,8 +12,24 @@ const MyRoute = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: 'about',
-                element: <h1>About</h1>
+                path: 'alljobs',
+                element: <h1>alljobs</h1>
+            },
+            {
+                path: 'myjobs',
+                element: <h1>myjobs</h1>
+            },
+            {
+                path: 'addjobs',
+                element: <h1>addjobs</h1>
+            },
+            {
+                path: 'login',
+                element: <h1>login</h1>
+            },
+            {
+                path: 'appliedjobs',
+                element: <h1>appliedjobs</h1>
             }
         ]
     }

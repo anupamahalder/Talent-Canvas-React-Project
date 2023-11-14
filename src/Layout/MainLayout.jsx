@@ -3,7 +3,7 @@ import Navbar from '../Header/Navbar';
 import Sidebar from '../Header/Sidebar';
 const MainLayout = ({children}) => {
     return (
-        <div className="drawer mx-auto max-w-[1300px]">
+        <div className="drawer mx-auto max-w-[1400px]">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" /> 
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}
