@@ -1,6 +1,7 @@
 import { Outlet, createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home/Home";
+import Login from "../Pages/Login/Login";
 
 const MyRoute = createBrowserRouter([
     {
@@ -26,7 +27,7 @@ const MyRoute = createBrowserRouter([
             },
             {
                 path: 'login',
-                element: <h1>login</h1>
+                element: <Login></Login>
             },
             {
                 path: 'appliedjobs',
