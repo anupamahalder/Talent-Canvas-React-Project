@@ -1,15 +1,61 @@
+import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
+import {BsEyeSlashFill} from 'react-icons/bs';
+import {IoEyeSharp} from 'react-icons/io5';
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
     // destructure authContext 
     const {login, googleSignIn} = useAuth();
+    // declare a state to track the visibility of password 
+    const [isVisible, setIsVisible] = useState(false);
 
     // create function to handle login with email and password 
     const handleLogin = e =>{
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
+
+        login(email,password)
+        .then(result =>{
+            console.log(result.user);
+            Swal.fire({
+                title: 'Good Job',
+                text: 'You have successfully logged in',
+                icon: 'success'
+            })
+        })
+        .catch(err=>{
+            console.log(err.message);
+            Swal.fire({
+                title: 'Sorry',
+                text: err.message,
+                icon: 'error'
+            })
+        })
+
         console.log(email,password);
+    }
+    const handleGoogleLogin = ()=>{
+
+        googleSignIn()
+        .then(result =>{
+            console.log(result.user);
+            Swal.fire({
+                title: 'Good Job',
+                text: 'You have successfully logged in',
+                icon: 'success'
+            })
+        })
+        .catch(err=>{
+            console.log(err.message);
+            Swal.fire({
+                title: 'Sorry',
+                text: err.message,
+                icon: 'error'
+            })
+        })
     }
 
     const inputStyle = "w-full h-full px-3 py-3 font-sans text-sm font-normal transition-all bg-transparent border rounded-md peer border-blue-gray-800 shadow-md border-t-transparent text-blue-gray-700 outline outline-0  placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-800 focus:border-2 focus:border-[#f3591d] focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-800";
@@ -28,7 +74,7 @@ const Login = () => {
                     <div className="relative h-11 w-full mb-4 min-w-[200px]">
                         <input
                         className= {inputStyle}
-                        placeholder="" name="email" type="email"
+                        placeholder="" name="email" type="email" required
                         />
                         <label className={labelStyle}>
                         Email
@@ -37,11 +83,20 @@ const Login = () => {
                     <div className="relative h-11 w-full min-w-[200px]">
                         <input
                         className={inputStyle}
-                        placeholder=" " name="password" type="password"
+                        placeholder=" " name="password" 
+                        type={ isVisible ? 'text': 'password'} required
                         />
                         <label className={labelStyle}>
                         Password
                         </label>
+                        {/* put the icons to check visible password  */}
+                        <div onClick={()=>setIsVisible(!isVisible)} 
+                        className="absolute right-4 top-4">
+                        {
+                            // make the type dynamic
+                            isVisible ? <IoEyeSharp></IoEyeSharp> : <BsEyeSlashFill></BsEyeSlashFill>
+                        }
+                        </div>
                     </div>
                     
                     </div>
@@ -53,7 +108,7 @@ const Login = () => {
                     >
                         <span className="py-2 text-lg">Login</span>
                     </button>
-                <button
+                <button onClick={handleGoogleLogin}
                     className="mt-4 block w-full select-none rounded-lg bg-gradient-to-tr from-[#081365] to-[#3e36b1] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#1e1784]/20 transition-all hover:shadow-lg hover:shadow-[#030b4a]/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     type="button"
                     data-ripple-light="true"
@@ -62,12 +117,7 @@ const Login = () => {
                 </button>
                 <p className="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
                     Donot have an account?
-                    <a
-                    href="#signup"
-                    className="block ml-1 font-sans text-sm antialiased font-bold leading-normal text-red-700"
-                    >
-                    Register
-                    </a>
+                    <Link className="text-red-800 font-semibold ml-1" to='/register'>Register</Link>
                 </p>
                 </div>
                 </form>
