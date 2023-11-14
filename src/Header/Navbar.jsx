@@ -1,6 +1,42 @@
 import { NavLink } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+    // destructure context api 
+    const {user, logOut} = useAuth();
+    // create a function to handle sign out 
+    const handleSignout = () =>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do You want to log out?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Log Out!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+                .then(res =>{
+                    console.log(res);
+                    Swal.fire({
+                        title: "",
+                        text: "You have successfully logged out.",
+                        icon: "success"
+                    });
+                })
+                .catch(err =>{
+                    console.log(err.message);
+                    Swal.fire({
+                        title: "Oopps!",
+                        text: "Failed to Log Out!",
+                        icon: "error"
+                      });
+                })
+            }
+          });
+    }
     return (
         <div className="w-full navbar bg-[#FEA47F] text-[#130f40] font-bold">
             <div className="flex-none scale-125 lg:hidden">
@@ -15,7 +51,7 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="flex-none hidden lg:block">
-            <div className="flex gap-2 uppercase">
+            <div className="flex gap-2 uppercase justify-center items-center">
                 {/* Navbar menu content here */}
                 <NavLink to='/' className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "text-red-900" : ""
@@ -24,6 +60,9 @@ const Navbar = () => {
                 <NavLink to='/alljobs' className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "text-red-900" : ""
                 }><span className="hover:bg-[#F97F51] p-2 rounded-lg">All Jobs</span></NavLink>
+                {
+                    user?.email && 
+                    <>
                 <NavLink to='/appliedjobs' className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "text-red-900" : ""
                 }>
@@ -38,12 +77,19 @@ const Navbar = () => {
                     <span className="hover:bg-[#F97F51] p-2 rounded-lg">My Jobs</span></NavLink>
                 <NavLink to='/blogs' className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "text-red-900" : ""
-                }>
+                }></NavLink>
+                </>
+                }
+                <NavLink>
                     <span className="hover:bg-[#F97F51] p-2 rounded-lg">Blogs</span></NavLink>
-                <NavLink to='/login' className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-red-900" : ""
-                }>
+                {
+                    user?.email ? 
+                    <button onClick={handleSignout}
+                    className="hover:bg-[#F97F51] p-1 rounded-lg uppercase">Sign Out</button>
+                    :<NavLink to='/login' className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-red-900" : ""}>
                     <span className="hover:bg-[#F97F51] p-2 rounded-lg">Login</span></NavLink>
+                }
             </div>
             </div>
         </div>
