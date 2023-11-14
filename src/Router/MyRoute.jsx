@@ -2,6 +2,7 @@ import { Outlet, createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
+import PrivateRoute from "./PrivateRoute";
 
 const MyRoute = createBrowserRouter([
     {
@@ -19,21 +20,21 @@ const MyRoute = createBrowserRouter([
             },
             {
                 path: 'myjobs',
-                element: <h1>myjobs</h1>
+                element: <PrivateRoute><h1>myjobs</h1></PrivateRoute>
             },
             {
                 path: 'addjobs',
-                element: <h1>addjobs</h1>
-            },
-            {
-                path: 'login',
-                element: <Login></Login>
+                element: <PrivateRoute><h1>addjobs</h1></PrivateRoute>
             },
             {
                 path: 'appliedjobs',
-                element: <h1>appliedjobs</h1>
+                element: <PrivateRoute><h1>appliedjobs</h1></PrivateRoute>
             }
         ]
+    },
+    {
+        path: 'login',
+        element: <Login></Login>
     }
 ])
 

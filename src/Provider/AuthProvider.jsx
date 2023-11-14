@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 export const AuthContext = createContext();
 const AuthProvider = ({children}) => {
     // declare a state for storing user info 
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState('');
+    // declare state for storing loading state 
+    const [isLoading, setIsLoading] = useState(false);
 
     const AuthInfo = {
-        user,
+        user, isLoading
     }
     return (
         <AuthContext.Provider value={AuthInfo}>
