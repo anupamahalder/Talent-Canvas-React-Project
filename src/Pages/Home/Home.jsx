@@ -1,3 +1,4 @@
+import JobTabs from "../../Components/JobTabs";
 
 const Home = () => {
     return (
@@ -21,7 +22,11 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            
+            {/* job tab section  */}
+            <div>
+                <h1 className="mt-10 mb-6 text-center text-3xl font-bold">Find Your Jobs</h1>
+                <JobTabs></JobTabs>
+            </div>
         </div>
     );
 };
