@@ -13,7 +13,7 @@ const AuthProvider = ({children}) => {
     // declare a state for storing user info 
     const [user, setUser] = useState('');
     // declare state for storing loading state 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     // create user with email and password
     const createUser = (email, password)=>{
