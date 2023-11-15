@@ -4,14 +4,14 @@ import "react-tabs/style/react-tabs.css";
 const JobTabs = () => {
     const [tabIndex, setTabIndex] = useState(0);
 
-    const tabStyle = "text-2xl hover:bg-blue-300 p-2 hover:rounded-md font-semibold text-blue-900 uppercase";
+    const tabStyle = "text-xl hover:bg-blue-100 p-2 hover:rounded-md font-semibold text-blue-900 uppercase";
     return (
-        <div className="mb-20 mx-auto">
+        <div className="mb-20 mx-auto w-11/12 h-[600px]">
             <Tabs
         selectedIndex={tabIndex}
         onSelect={tabIndex => setTabIndex(tabIndex)}
       >
-        <div className="bg-blue-200 pt-2">
+        <div className="">
         <TabList>
           <Tab><span className={tabStyle}>All Jobs</span></Tab>
           <Tab><span className={tabStyle}>Full Time Jobs</span></Tab>
@@ -19,6 +19,7 @@ const JobTabs = () => {
           <Tab><span className={tabStyle}>On Site Jobs</span></Tab>
           <Tab><span className={tabStyle}>Hybrid Jobs</span></Tab>
           <Tab><span className={tabStyle}>Remote Job</span></Tab>
+          <Tab><span className={tabStyle}>Intern Job</span></Tab>
         </TabList>
         </div>
         <TabPanel>

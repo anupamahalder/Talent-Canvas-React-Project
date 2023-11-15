@@ -37,8 +37,9 @@ const Navbar = () => {
             }
           });
     }
+    const navStyle = "hover:bg-[#fc9971] p-2 rounded-lg";
     return (
-        <div className="w-full navbar bg-[#FEA47F] text-[#130f40] font-bold">
+        <div className="w-full navbar bg-white shadow-lg text-[#130f40] font-bold">
             <div className="flex-none scale-125 lg:hidden">
             <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -47,48 +48,54 @@ const Navbar = () => {
             <div className="flex-1 px-2 py-2 mx-2 justify-end md:justify-start">
                 <div className="flex flex-row-reverse md:flex-row gap-2 justify-center items-center">
                     <img className="w-[40px] md:w-[50px]" src="/logo.png" alt="" />
-                    <h1 className="text-2xl md:text-4xl">Talent Canvas</h1>
+                    <h1 className="text-2xl text-[#ff6348] md:text-4xl">Talent Canvas</h1>
                 </div>
             </div>
             <div className="flex-none hidden lg:block">
             <div className="flex gap-2 uppercase justify-center items-center">
                 {/* Navbar menu content here */}
                 <NavLink to='/' className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-red-900" : ""
+                    isPending ? "pending" : isActive ? "text-red-600" : ""
                 }>
-                    <span className="hover:bg-[#F97F51] p-2 rounded-lg">Home</span></NavLink>
+                    <span className={navStyle}>Home</span></NavLink>
                 <NavLink to='/alljobs' className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-red-900" : ""
-                }><span className="hover:bg-[#F97F51] p-2 rounded-lg">All Jobs</span></NavLink>
+                    isPending ? "pending" : isActive ? "text-red-600" : ""
+                }><span className={navStyle}>All Jobs</span></NavLink>
                 {
                     user?.email && 
                     <>
                 <NavLink to='/appliedjobs' className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-red-900" : ""
+                    isPending ? "pending" : isActive ? "text-red-600" : ""
                 }>
-                    <span className="hover:bg-[#F97F51] p-2 rounded-lg">Applied Jobs</span></NavLink>
+                    <span className={navStyle}>Applied Jobs</span></NavLink>
                 <NavLink to='/addjobs' className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-red-900" : ""
+                    isPending ? "pending" : isActive ? "text-red-600" : ""
                 }>
-                    <span className="hover:bg-[#F97F51] p-2 rounded-lg">Add Jobs</span></NavLink>
+                    <span className={navStyle}>Add Jobs</span></NavLink>
                 <NavLink to='/myjobs' className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-red-900" : ""
+                    isPending ? "pending" : isActive ? "text-red-600" : ""
                 }>
-                    <span className="hover:bg-[#F97F51] p-2 rounded-lg">My Jobs</span></NavLink>
+                    <span className={navStyle}>My Jobs</span></NavLink>
                 <NavLink to='/blogs' className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-red-900" : ""
+                    isPending ? "pending" : isActive ? "text-red-600" : ""
                 }></NavLink>
                 </>
                 }
                 <NavLink>
-                    <span className="hover:bg-[#F97F51] p-2 rounded-lg">Blogs</span></NavLink>
+                    <span className={navStyle}>Blogs</span></NavLink>
                 {
                     user?.email ? 
+                    <>
                     <button onClick={handleSignout}
-                    className="hover:bg-[#F97F51] p-1 rounded-lg uppercase">Sign Out</button>
+                    className={navStyle}>SIGN OUT</button>
+                    {
+                        user?.photoURL && <img src={user?.photoURL}
+                         className="w-10 rounded-full cursor-pointer" title={user?.displayName} alt="" />
+                    }
+                    </>
                     :<NavLink to='/login' className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "text-red-900" : ""}>
-                    <span className="hover:bg-[#F97F51] p-2 rounded-lg">Login</span></NavLink>
+                    isPending ? "pending" : isActive ? "text-red-600" : ""}>
+                    <span className={navStyle}>Login</span></NavLink>
                 }
             </div>
             </div>

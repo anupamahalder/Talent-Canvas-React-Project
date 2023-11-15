@@ -24,7 +24,7 @@ const Home = () => {
             </div>
             {/* job tab section  */}
             <div>
-                <h1 className="mt-10 mb-6 text-center text-3xl font-bold">Find Your Jobs</h1>
+                <h1 className="mt-10 mb-6 text-[#f06933] text-center text-3xl font-bold">Find Your Jobs</h1>
                 <JobTabs></JobTabs>
             </div>
         </div>
