@@ -4,12 +4,13 @@ import {BsEyeSlashFill} from 'react-icons/bs';
 import {IoEyeSharp} from 'react-icons/io5';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     // destructure authContext 
-    const {login, googleSignIn} = useAuth();
+    const {loginUser, setLoginUser, login, googleSignIn} = useAuth();
     // declare a state to track the visibility of password 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -22,6 +23,16 @@ const Login = () => {
         login(email,password)
         .then(result =>{
             console.log(result.user);
+            // load user data from server after login 
+            const url = `http://localhost:5050/users?email=${email}`;
+            axios.get(url)
+            .then(data =>{
+                console.log(data.data[0]);
+                const userInfo = data.data[0];
+                // set user 
+                setLoginUser(userInfo);
+                console.log('login user',loginUser);
+            })
             Swal.fire({
                 title: 'Good Job',
                 text: 'You have successfully logged in',

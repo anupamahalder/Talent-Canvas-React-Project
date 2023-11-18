@@ -17,14 +17,14 @@ const Home = () => {
                         <div className="flex gap-2 mx-auto justify-center items-center">
                             <input className="py-3 px-1 md:px-2 rounded-md "
                             type="text" placeholder="Search your jobs..."/>
-                            <button className="btn bg-[#fc9971] hover:bg-[#f47c4d]">Search</button>
+                            <button className="btn bg-[#e64f34] text-white hover:bg-[#b64632]">Search</button>
                         </div>
                     </div>
                 </div>
             </div>
             {/* job tab section  */}
             <div>
-                <h1 className="mt-10 mb-6 text-[#f06933] text-center text-3xl font-bold">Find Your Jobs</h1>
+                <h1 className="mt-10 mb-6 text-[#FF6348] text-center text-3xl font-bold">Find Your Jobs</h1>
                 <JobTabs></JobTabs>
             </div>
         </div>

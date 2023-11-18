@@ -4,12 +4,13 @@ import {BsEyeSlashFill} from 'react-icons/bs';
 import {IoEyeSharp} from 'react-icons/io5';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Register = () => {
     const location = useLocation();
     const navigate = useNavigate();
     // destructure authContext 
-    const {createUser} = useAuth();
+    const {createUser, setLoginUser, loginUser} = useAuth();
     // declare a state to track the visibility of password 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -21,8 +22,25 @@ const Register = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
 
+        const userData ={name,imageUrl,email};
         createUser(email,password)
         .then(result =>{
+            // post user data to database 
+            axios.post('http://localhost:5050/users-data', userData)
+            .then(data => {
+                console.log(data.data);
+                // url to load data from server 
+                const url = `http://localhost:5050/users?email=${email}`;
+                axios.get(url)
+                .then(data =>{
+                    console.log(data.data[0]);
+                    const userInfo = data.data[0];
+                    // set user 
+                    setLoginUser(userInfo);
+                    console.log('register user',loginUser);
+                })
+            })
+            .catch(err => console.log(err.message));
             console.log(result.user);
             Swal.fire({
                 title: 'Good Job',

@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
     // destructure context api 
-    const {user, logOut} = useAuth();
+    const {user, logOut, loginUser} = useAuth();
     // create a function to handle sign out 
     const handleSignout = () =>{
         Swal.fire({
@@ -89,8 +89,8 @@ const Navbar = () => {
                     <button onClick={handleSignout}
                     className={navStyle}>SIGN OUT</button>
                     {
-                        user?.photoURL && <img src={user?.photoURL}
-                         className="w-10 rounded-full cursor-pointer" title={user?.displayName} alt="" />
+                        (user?.photoURL || loginUser?.imageUrl) && <img src={(user?.photoURL) || (loginUser?.imageUrl)}
+                         className="w-10 h-10 rounded-full cursor-pointer" title={(user?.displayName) || (loginUser?.name)} alt="" />
                     }
                     </>
                     :<NavLink to='/login' className={({ isActive, isPending }) =>
