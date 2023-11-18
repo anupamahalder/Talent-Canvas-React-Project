@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import JobDisplay from "./JobDisplay";
 const JobTabs = () => {
     const [tabIndex, setTabIndex] = useState(0);
 
@@ -23,17 +24,26 @@ const JobTabs = () => {
         </TabList>
         </div>
         <TabPanel>
-          <div>
-            <h1>lorem 12483 hdsahfsdbc</h1>
-            <p>hello jaan</p>
-          </div>
+          <JobDisplay categoryName="alljobs"></JobDisplay>
         </TabPanel>
-        <TabPanel>t2t2t2</TabPanel>
-        <TabPanel>t2t2t2</TabPanel>
-        <TabPanel>t2t2t2</TabPanel>
-        <TabPanel>t2t2t2</TabPanel>
-        <TabPanel>t2t2t2</TabPanel>
-        <TabPanel>Hello</TabPanel>
+        <TabPanel>
+          <JobDisplay categoryName="fulltime"></JobDisplay>
+        </TabPanel>
+        <TabPanel>
+          <JobDisplay categoryName="parttime"></JobDisplay>
+        </TabPanel>
+        <TabPanel>
+          <JobDisplay categoryName="onsite"></JobDisplay>
+        </TabPanel>
+        <TabPanel>
+          <JobDisplay categoryName="hybrid"></JobDisplay>
+        </TabPanel>
+        <TabPanel>
+          <JobDisplay categoryName="remote"></JobDisplay>
+        </TabPanel>
+        <TabPanel>
+          <JobDisplay categoryName="intern"></JobDisplay>
+        </TabPanel>
       </Tabs>
         </div>
     );

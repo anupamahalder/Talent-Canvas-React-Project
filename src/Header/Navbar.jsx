@@ -90,7 +90,7 @@ const Navbar = () => {
                     className={navStyle}>SIGN OUT</button>
                     {
                         (user?.photoURL || loginUser?.imageUrl) && <img src={(user?.photoURL) || (loginUser?.imageUrl)}
-                         className="w-10 h-10 rounded-full cursor-pointer" title={(user?.displayName) || (loginUser?.name)} alt="" />
+                         className="w-10 h-10 rounded-full" title={(user?.displayName) || (loginUser?.name)} alt="" />
                     }
                     </>
                     :<NavLink to='/login' className={({ isActive, isPending }) =>
