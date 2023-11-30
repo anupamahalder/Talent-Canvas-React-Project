@@ -5,6 +5,8 @@ import JobCard from './JobCard';
 const JobDisplay = ({categoryName}) => {
     // declare state to hold job data 
     const [jobs, setJobs] = useState([]);
+    // declare a state to hold the data of show all 
+    const [isShowAll, setIsShowAll] = useState(false);
     let url;
     // set url 
     if(categoryName == 'alljobs'){
@@ -23,11 +25,16 @@ const JobDisplay = ({categoryName}) => {
         })
     },[]);
     return (
-        <div className='mx-auto my-10'>
+        <div className='mx-auto mt-10 pb-20'>
             <div className='px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             {
                 jobs.map(job => <JobCard key={job._id} job={job}></JobCard>)
             }
+            </div>
+            <div className='mx-auto text-center'>
+                <button onClick={()=>setIsShowAll(!isShowAll)} className='text-blue-700 text-xl font-bold hover:text-red-700'>{
+                    isShowAll ? "See Less" : "See More"
+                }</button>
             </div>
         </div>
     );
