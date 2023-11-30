@@ -28,14 +28,17 @@ const JobDisplay = ({categoryName}) => {
             <div className='px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             {
                 isShowAll ? jobs.map(job => <JobCard key={job._id} job={job}></JobCard>):
-                jobs.slice(0,10).map(job => <JobCard key={job._id} job={job}></JobCard>)
+                jobs.slice(0,9).map(job => <JobCard key={job._id} job={job}></JobCard>)
             }
             </div>
-            <div className='mx-auto text-center'>
-                <button onClick={()=>setIsShowAll(!isShowAll)} className='text-blue-700 text-xl font-bold hover:text-red-700 uppercase'>{
-                    isShowAll ? "See Less" : "See More"
-                }</button>
-            </div>
+            {
+                jobs.length > 9 &&
+                <div className='mx-auto text-center'>
+                    <button onClick={()=>setIsShowAll(!isShowAll)} className='text-blue-700 text-xl font-bold hover:text-red-700 uppercase'>{
+                        isShowAll ? "See Less" : "See More"
+                    }</button>
+                </div>
+            }
         </div>
     );
 };
