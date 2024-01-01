@@ -27,6 +27,8 @@ const Home = () => {
                 <h1 className="mt-10 mb-6 text-[#FF6348] text-center text-3xl font-bold">Find Your Jobs</h1>
                 <JobTabs></JobTabs>
             </div>
+            {/* gallery section  */}
+            
         </div>
     );
 };
