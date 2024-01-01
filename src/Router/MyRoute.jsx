@@ -5,12 +5,13 @@ import Login from "../Pages/Login/Login";
 import PrivateRoute from "./PrivateRoute";
 import Register from "../Pages/Login/Register";
 import JobDetail from "../Components/JobDetail";
+import ErrorPage from "../Components/ErrorPage";
 
 const MyRoute = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout><Outlet></Outlet></MainLayout>,
-        errorElement: <h1>404 Error</h1>,
+        errorElement: <ErrorPage/>,
         children: [
             {
                 index: true,
