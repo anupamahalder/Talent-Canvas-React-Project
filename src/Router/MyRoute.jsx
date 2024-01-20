@@ -6,6 +6,7 @@ import PrivateRoute from "./PrivateRoute";
 import Register from "../Pages/Login/Register";
 import JobDetail from "../Components/JobDetail";
 import ErrorPage from "../Components/ErrorPage";
+import AllJobs from "../Pages/AllJobs/AllJobs";
 
 const MyRoute = createBrowserRouter([
     {
@@ -15,11 +16,12 @@ const MyRoute = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home></Home>
+                element: <Home/>
             },
             {
                 path: 'alljobs',
-                element: <h1>alljobs</h1>
+                element: <AllJobs/>,
+                loader: ()=>fetch('http://localhost:5050/alljobs')
             },
             {
                 path: 'myjobs',
@@ -35,18 +37,18 @@ const MyRoute = createBrowserRouter([
             },
             {
                 path: '/jobdetais/:id1/:id2',
-                element: <JobDetail></JobDetail>,
+                element: <JobDetail/>,
                 loader: ({params})=>fetch(`http://localhost:5050/jobs/${params.id1}/${params.id2}`)
             }
         ]
     },
     {
         path: 'login',
-        element: <Login></Login>
+        element: <Login/>
     },
     {
         path: 'register',
-        element: <Register></Register>
+        element: <Register/>
     }
 ])
 
