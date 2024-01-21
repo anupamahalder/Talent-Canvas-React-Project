@@ -11,10 +11,28 @@ const AllJobs = () => {
     // handle recent post button 
     const handleRecentPost=()=>{
         console.log('clicked recent post button');
+        const sortedJobs = [...jobs].sort(function(a,b){
+            const dateA = new Date(a.jobPostingDate);
+            const dateB = new Date(b.jobPostingDate);
+            if(dateA > dateB) return -1;
+            else if(dateA < dateB) return 1;
+            else return 0;
+        })
+        console.log(jobs);
+        setJobs(sortedJobs);
     }
     // handle old post button
     const handleOldPost=()=>{
         console.log('Cliceked old post button');
+        const sortedJobs = [...jobs].sort(function(a,b){
+            const dateA = new Date(a.jobPostingDate);
+            const dateB = new Date(b.jobPostingDate);
+            if(dateA < dateB) return -1;
+            else if(dateA > dateB) return 1;
+            else return 0;
+        })
+        console.log(jobs);
+        setJobs(sortedJobs);
     }
     // handle all post button
     const handleAllPost=()=>{
@@ -71,7 +89,7 @@ const AllJobs = () => {
                 </thead>
                 <tbody>
                     {
-                        jobs.map(job => <JobRow key={job.id} job={job}></JobRow>)
+                        jobs.map(job => <JobRow key={job._id} job={job}></JobRow>)
                     }
                 </tbody>
             </table>
