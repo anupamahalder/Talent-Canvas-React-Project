@@ -19,7 +19,7 @@ const JobCard = ({job}) => {
                 <p>Application Deadline: {applicationDeadline}</p>
             </div>
             <div className="pb-4 pt-3">
-                <Link to={`/jobdetais/${_id}`}>
+                <Link to={`/jobdetaildisplay/${_id}`}>
                 <button
                 className="block w-2/5 mx-auto select-none rounded-lg bg-[#FF6348] hover:bg-[#e95238] py-3.5 px-4 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-[#915146]/20 transition-all hover:shadow-lg hover:shadow-[#472923]/60 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 type="button"

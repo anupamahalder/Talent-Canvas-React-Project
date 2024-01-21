@@ -1,7 +1,13 @@
 import PropTypes from 'prop-types'; 
+import { Link } from 'react-router-dom';
 const JobRow = ({job}) => {
     // destructure job object 
     const {_id,jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job;
+
+    //handle details button
+    const handleDetailsBtn = () =>{
+        console.log('Button Clicked of id',_id);
+    }
     return (
         <tr  className="bg-white odd:bg-gray-50">
             <td>{loggedInUserName}</td>
@@ -9,7 +15,9 @@ const JobRow = ({job}) => {
             <td>{jobPostingDate}</td>
             <td>{applicationDeadline}</td>
             <td>{salaryRange}</td>
-            <td><button className='text-blue-700 hover:bg-blue-600 hover:text-base-100 btn capitalize font-bold'>Details</button></td>
+            <td>
+                <Link to={`/jobdetaildisplay/${_id}`}><button onClick={handleDetailsBtn}
+            className='text-blue-700 hover:bg-blue-600 hover:text-base-100 btn capitalize font-bold'>Details</button></Link></td>
         </tr>
     );
 };

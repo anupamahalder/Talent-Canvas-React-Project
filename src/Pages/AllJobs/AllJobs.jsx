@@ -18,7 +18,7 @@ const AllJobs = () => {
             else if(dateA < dateB) return 1;
             else return 0;
         })
-        console.log(jobs);
+        // console.log(jobs);
         setJobs(sortedJobs);
     }
     // handle old post button
@@ -31,7 +31,7 @@ const AllJobs = () => {
             else if(dateA > dateB) return 1;
             else return 0;
         })
-        console.log(jobs);
+        // console.log(jobs);
         setJobs(sortedJobs);
     }
     // handle all post button
