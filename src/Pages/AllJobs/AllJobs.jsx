@@ -19,6 +19,7 @@ const AllJobs = () => {
     // handle all post button
     const handleAllPost=()=>{
         console.log('Cliceked all post button');
+        setJobs(loadedJobs);
     }
     // handle search button 
     const handleSearchBtn=(e)=>{
