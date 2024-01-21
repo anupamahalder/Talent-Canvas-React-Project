@@ -18,8 +18,8 @@ const JobTabs = () => {
           <Tab><span className={tabStyle}>Part Time Jobs</span></Tab>
           <Tab><span className={tabStyle}>On Site Jobs</span></Tab>
           <Tab><span className={tabStyle}>Hybrid Jobs</span></Tab>
-          <Tab><span className={tabStyle}>Remote Job</span></Tab>
-          <Tab><span className={tabStyle}>Intern Job</span></Tab>
+          <Tab><span className={tabStyle}>Remote Jobs</span></Tab>
+          <Tab><span className={tabStyle}>Intern Jobs</span></Tab>
         </TabList>
         </div>
         <TabPanel>

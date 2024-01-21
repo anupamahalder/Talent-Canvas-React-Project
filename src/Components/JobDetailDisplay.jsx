@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 const JobDetailDisplay = () => {
@@ -6,10 +6,8 @@ const JobDetailDisplay = () => {
     const job = useLoaderData();
     const {_id,jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job;
 
-    // handle arrow 
-    const handleArrow = () =>{
-        console.log('arrow button clicked!');
-    }
+    const navigate = useNavigate();
+
     // handle apply button
     const handleApplyBtn = () =>{
         console.log('apply button clicked!');
@@ -18,7 +16,7 @@ const JobDetailDisplay = () => {
         <div className="relative mx-10">
             <h1 className="mx-auto mt-10 mb-8 text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl">Details of the Job</h1>
             {/* arrow  */}
-            <FaArrowLeftLong onClick={handleArrow} className="text-3xl text-gray-500 absolute top-10 left-4 cursor-pointer"/>
+            <FaArrowLeftLong onClick={()=>navigate(-1)} className="text-3xl text-gray-500 absolute top-10 left-4 cursor-pointer"/>
         {/* job card  */}
         <div className="md:flex justify-between rounded-lg md:gap-10 bg-gray-50 py-10">
             {/* image  */}
