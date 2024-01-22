@@ -7,7 +7,7 @@ const JobTabs = () => {
 
     const tabStyle = "text-xl hover:bg-blue-100 p-2 hover:rounded-md font-semibold text-blue-900 uppercase";
     return (
-        <div className="mb-20 mx-auto w-15/16 h-[600px]">
+        <div className="mb-20 mx-auto w-15/16 min-h-screen">
             <Tabs
         selectedIndex={tabIndex}
         onSelect={tabIndex => setTabIndex(tabIndex)}>

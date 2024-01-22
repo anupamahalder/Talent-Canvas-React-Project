@@ -2,7 +2,7 @@ import JobTabs from "../../Components/JobTabs";
 
 const Home = () => {
     return (
-        <div className="">
+        <div className="min-h-screen">
             {/* banner section  */}
             <div className="relative">
                 <img className="h-[450px] md:h-[650px] w-full object-cover object-center"
@@ -23,7 +23,7 @@ const Home = () => {
                 </div>
             </div>
             {/* job tab section  */}
-            <div>
+            <div className="mb-10">
                 <h1 className="mt-10 mb-6 text-[#FF6348] text-center text-3xl font-bold">Find Your Jobs</h1>
                 <JobTabs></JobTabs>
             </div>

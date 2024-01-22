@@ -63,7 +63,7 @@ const AllJobs = () => {
                     <button onClick={handleOldPost} 
                     className="btn bg-[#348ae6] text-white hover:bg-[#20339e]">See Old Post</button>
                     <button onClick={handleAllPost}
-                    className="btn bg-[#e58e26] text-white hover:bg-[#cc8e35]">See All Post</button>
+                    className="btn bg-[#e58e26] text-white hover:bg-[#ca8c36]">See All Post</button>
                 </div>
                 <div className="md:flex-1 pt-2 md:pt-0 flex justify-center md:justify-end">
                     <form onSubmit={handleSearchBtn}>
@@ -74,7 +74,7 @@ const AllJobs = () => {
                 </div>
             </div>
             </div>
-            <div className="overflow-x-scroll px-4 md:px-10">
+            <div className="overflow-x-scroll px-4 md:px-10 mb-10">
             <table className="table">
                 {/* head */}
                 <thead>
