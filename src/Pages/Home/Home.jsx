@@ -71,7 +71,7 @@ const Home = () => {
                         <div className="flex gap-2 mx-auto justify-center items-center">
                             <form onSubmit={hanldeSearch}>
                                 <input className="py-3 px-1 md:px-2 mr-2 rounded-md "
-                                type="text" name="search" placeholder="Search your jobs..."/>
+                                type="text" name="search" placeholder="Search your job category..."/>
                                 <button className="btn bg-[#e64f34] text-white hover:bg-[#b64632]">Search</button>
                             </form>
                         </div>
