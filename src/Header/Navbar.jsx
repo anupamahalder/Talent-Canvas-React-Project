@@ -76,13 +76,12 @@ const Navbar = () => {
                     isPending ? "pending" : isActive ? "text-red-600" : ""
                 }>
                     <span className={navStyle}>My Jobs</span></NavLink>
+
                 <NavLink to='/blogs' className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "text-red-600" : ""
-                }></NavLink>
+                }><span className={navStyle}>Blogs</span></NavLink>
                 </>
                 }
-                <NavLink>
-                    <span className={navStyle}>Blogs</span></NavLink>
                 {
                     user?.email ? 
                     <>

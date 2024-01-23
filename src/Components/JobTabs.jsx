@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import JobDisplay from "./JobDisplay";
-const JobTabs = () => {
-    const [tabIndex, setTabIndex] = useState(0);
+import PropTypes from 'prop-types';
+
+const JobTabs = ({index}) => {
+    const [tabIndex, setTabIndex] = useState(index);
+    console.log('Hello index',index);
+    // changing tabIndex value with useEffect to handle side effects 
+    useEffect(()=>{
+      setTabIndex(index);
+    },[index]);
 
     const tabStyle = "text-xl hover:bg-blue-100 p-2 hover:rounded-md font-semibold text-blue-900 uppercase";
     return (
-        <div className="mb-20 mx-auto w-15/16 min-h-screen">
+        <div className="mb-16 mx-auto w-15/16 min-h-screen">
             <Tabs
         selectedIndex={tabIndex}
         onSelect={tabIndex => setTabIndex(tabIndex)}>
@@ -48,4 +55,8 @@ const JobTabs = () => {
     );
 };
 
+// Added proptypes 
+JobTabs.propTypes = {
+  index: PropTypes.number
+}
 export default JobTabs;

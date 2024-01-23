@@ -5,7 +5,7 @@ const Footer = () => {
         <div className="">
             <footer className="footer flex p-10 bg-neutral text-neutral-content">
                 <div className="flex-1">
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center gap-2">
                         <img className="w-10" src="/public/darkLogo.png" alt="" />
                         <p className="text-3xl font-bold">Talent Canvas</p>
                     </div>

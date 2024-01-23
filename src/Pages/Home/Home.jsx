@@ -1,6 +1,60 @@
+import { useState } from "react";
 import JobTabs from "../../Components/JobTabs";
+import AboutUs from "./AboutUs";
 
 const Home = () => {
+    // declare a state for index
+    const [index, setIndex] = useState(0);
+
+    // handle search button 
+    const hanldeSearch=(e)=>{
+        const allJobs = "All Jobs";
+        const fullTimeJobs = "Full Time Jobs fulltime";
+        const partTimeJobs = "Part Time Jobs parttime";
+        const onSiteJobs = "On Site Jobs onsite";
+        const hybridJobs = "Hybrid Jobs";
+        const remoteJobs = "Remote Jobs";
+        const internJobs = "Intern Jobs";
+        e.preventDefault();
+        const search = e.target.search.value;
+        if(search === ""){
+            console.log('bye');
+            return;
+        }
+        if(allJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+            console.log(0);
+            setIndex(0);
+        }
+        else if(fullTimeJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+            console.log(1);
+            setIndex(1);
+        }
+        else if(partTimeJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+            console.log(2);
+            setIndex(2);
+        }
+        else if(onSiteJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+            console.log(3);
+            setIndex(3);
+        }
+        else if(hybridJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+            console.log(4);
+            setIndex(4);
+        }
+        else if(remoteJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+            console.log(5);
+            setIndex(5);
+        }
+        else if(internJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
+            console.log(6);
+            setIndex(6);
+        }
+        else{
+            console.log(0);
+            setIndex(0);
+        }
+        console.log(search);
+    }
     return (
         <div className="min-h-screen">
             {/* banner section  */}
@@ -15,9 +69,11 @@ const Home = () => {
                         <h1 className="text-center md:font-semibold text-gray-200 w-4/5 mx-auto my-6 md:text-xl">Your Gateway to Limitless Opportunities with Talent Canvas. Painting the Future of Your Career...</h1>
                         {/* search  */}
                         <div className="flex gap-2 mx-auto justify-center items-center">
-                            <input className="py-3 px-1 md:px-2 rounded-md "
-                            type="text" placeholder="Search your jobs..."/>
-                            <button className="btn bg-[#e64f34] text-white hover:bg-[#b64632]">Search</button>
+                            <form onSubmit={hanldeSearch}>
+                                <input className="py-3 px-1 md:px-2 mr-2 rounded-md "
+                                type="text" name="search" placeholder="Search your jobs..."/>
+                                <button className="btn bg-[#e64f34] text-white hover:bg-[#b64632]">Search</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -25,10 +81,10 @@ const Home = () => {
             {/* job tab section  */}
             <div className="mb-10">
                 <h1 className="mt-10 mb-6 text-[#FF6348] text-center text-3xl font-bold">Find Your Jobs</h1>
-                <JobTabs></JobTabs>
+                <JobTabs index={index}></JobTabs>
             </div>
-            {/* gallery section  */}
-            
+            {/* about us section  */}
+            <AboutUs/>
         </div>
     );
 };
