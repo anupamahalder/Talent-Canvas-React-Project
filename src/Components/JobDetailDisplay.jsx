@@ -2,6 +2,8 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
+import { useState } from "react";
+import axios from "axios";
 
 const JobDetailDisplay = () => {
     // load data 
@@ -10,7 +12,9 @@ const JobDetailDisplay = () => {
 
     // destructure auth context 
     const {user,loginUser} = useAuth();
-    console.log(user,loginUser);
+
+    // declare a state to store the applied job 
+    const [appliedJob, setAppliedJob] = useState();
 
     const navigate = useNavigate();
 
@@ -26,7 +30,7 @@ const JobDetailDisplay = () => {
           focusConfirm: false,
           preConfirm: () => {
             return {
-              username: document.getElementById("swal-input1").value,
+            //   username: document.getElementById("swal-input1").value,
               email: document.getElementById("swal-input2").value,
               resumeLink: document.getElementById("swal-input3").value,
             };
@@ -35,14 +39,34 @@ const JobDetailDisplay = () => {
       
         if (formValues) {
           // Now you have the form values (username, email, and resumeLink)
-          console.log(formValues);
+        //   console.log(formValues);
           //if resume link is not valid then show error
           if (isValidURL(formValues.resumeLink)) {
-            Swal.fire({
-                title: "Good Job,\nSuccessfully Applied to the Job!",
-                text: `Applied with Resume Link: ${formValues.resumeLink}`,
-                icon: 'success'
-            });
+            const jobId = _id;
+            const applyJobData = {...formValues,jobId};
+            axios.post('http://localhost:5050/appliedjob',applyJobData)
+            .then(data=>{
+                console.log(data.data);
+                if(data.data.insertedId){
+                    Swal.fire({
+                        title: "Good Job,\nSuccessfully Applied to the Job!",
+                        text: `Applied with Resume Link: ${formValues.resumeLink}`,
+                        icon: 'success'
+                    });
+                    console.log(applyJobData);
+                }
+                else{
+                    Swal.fire({
+                        title: "Sorry!",
+                        text: `Failed to apply to the job!`,
+                        icon: 'error'
+                    });
+                }
+            })
+            .catch(err=>{
+                console.log('error to post applied job data');
+            })
+            
           } else {
             console.log("Invalid resume link!");
             Swal.fire({
