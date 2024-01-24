@@ -46,12 +46,32 @@ const AddJobs = () => {
         const highestSalary = form.highestSalary.value;
         const lowestSalary = form.lowestSalary.value;
         const jobDescription = form.jobDescription.value;
-        const appliedDate = new Date().toISOString().split('T')[0];
+        const jobPostingDate = new Date().toISOString().split('T')[0];
         const applicationDeadline = form.applicationDeadline.value;
         const applicantNumber = 0;
         const salaryRange = `$${lowestSalary}-$${highestSalary}`;
-        const jobDetails = {jobTitle,jobBannerImageUrl,loggedInUserName, userEmail,jobCategory,category_key,salaryRange,jobDescription,appliedDate,applicationDeadline,applicantNumber};
-        console.log(jobDetails);
+        // make an object to post data to the server 
+        const jobDetails = {jobTitle,jobBannerImageUrl,loggedInUserName, userEmail,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,applicantNumber};
+
+        fetch('http://localhost:5050/alljobs',{
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(jobDetails)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            if(data.insertedId){
+                Swal.fire({
+                    title: 'Sucessful!',
+                    text: "Job Added Successfully to Database",
+                    icon: 'success',
+                })
+                form.reset();
+            }
+        })
     }
     return (
         <div className='min-h-screen py-20 px-10 flex justify-center mb-20'>

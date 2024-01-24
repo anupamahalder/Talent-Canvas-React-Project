@@ -15,7 +15,8 @@ const Register = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     // declare a state to store image or user 
-    const [imageUrl, setImageUrl] = useState();
+    const [imageUrl, setImageUrl] = useState('https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg');
+    
      // handle image url is valid or not 
      const handleImageUrl = (e) => {
         const imageUrl = e.target.value;
