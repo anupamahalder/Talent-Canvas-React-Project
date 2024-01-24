@@ -1,18 +1,45 @@
 import React, { useState } from 'react';
 import useAuth from '../../Hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const AddJobs = () => {
     
     // destructure authcontext values 
-    const {user} = useAuth();
-    // const {_id,jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job;
+    const {user, loginUser} = useAuth();
+
+    // declare a state to store banner image url 
+    const [bannerImage, setBannerImage] = useState();
+
+    // handle image url is valid or not 
+    const handleImageUrl = (e) => {
+        const imageUrl = e.target.value;
+        const img = new Image();
+      
+        img.onload = () => {
+          // Image loaded successfully
+          console.log('Image is valid:', imageUrl);
+        };
+      
+        img.onerror = () => {
+          // Image failed to load
+          console.error('Invalid image URL:', imageUrl);
+          Swal.fire({
+            title: "Invalid Image URL",
+            text: "Please provide valid image url",
+            icon: "error"
+          });
+        };
+      
+        img.src = imageUrl;
+      };
+
     // handle add jobs 
     const hanldeAddJob = (e) =>{
         e.preventDefault();
         const form = e.target;
         const jobTitle = form.jobTitle.value;
         const jobBannerImageUrl = form.bannerUrl.value;
-        const loggedInUserName = user.displayName;
+        const loggedInUserName = user.displayName || loginUser.name;
         const userEmail = user.email;
         const category_key = form.jobCategory.value;
         const jobCategory = form.jobCategory.options[form.jobCategory.selectedIndex].getAttribute('fullname');
@@ -36,7 +63,7 @@ const AddJobs = () => {
                         <input required className='outline pl-2 outline-1 mt-2 hover:outline-2 outline-slate-300 hover:outline-gray-800 rounded-md w-3/5' type="text" name="jobTitle" id="" /> <br /><br />
                         {/* picture url  */}
                         <span className='uppercase pl-4 font-semibold text-gray-700'>Picture URL of the Job Banner: </span>
-                        <input required className='ml-6 pl-2 outline mt-2 outline-1 outline-slate-300 rounded-lg w-4/5 hover:outline-2 hover:outline-gray-800' type="text" name="bannerUrl" id="" /><br /><br />
+                        <input onBlur={handleImageUrl} required className='ml-6 pl-2 outline mt-2 outline-1 outline-slate-300 rounded-lg w-4/5 hover:outline-2 hover:outline-gray-800' type="text" name="bannerUrl" id="" /><br /><br />
                         {/* select job category  */}
                         <span className='uppercase pl-4 font-semibold text-gray-700'>Choose Job Category: </span>
 

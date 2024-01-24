@@ -14,11 +14,30 @@ const Register = () => {
     // declare a state to track the visibility of password 
     const [isVisible, setIsVisible] = useState(false);
 
+    // declare a state to store image or user 
+    const [imageUrl, setImageUrl] = useState();
+     // handle image url is valid or not 
+     const handleImageUrl = (e) => {
+        const imageUrl = e.target.value;
+        const img = new Image();
+      
+        img.onload = () => {
+          // Image loaded successfully
+          console.log('Image is valid:', imageUrl);
+          setImageUrl(imageUrl);
+        };
+      
+        img.onerror = () => {
+          // Image failed to load
+          console.error('Invalid image URL:', imageUrl);
+          setImageUrl('https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg');
+        };
+        img.src = imageUrl;
+      };
     // create function to handle login with email and password 
     const handleRegister = e =>{
         e.preventDefault();
         const name= e.target.name.value;
-        const imageUrl = e.target.image.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
 
@@ -84,7 +103,7 @@ const Register = () => {
                         </label>
                     </div>
                     <div className="relative h-11 w-full mb-4 min-w-[200px]">
-                        <input
+                        <input onBlur={handleImageUrl}
                         className= {inputStyle}
                         placeholder="" name="image" type="text" 
                         />

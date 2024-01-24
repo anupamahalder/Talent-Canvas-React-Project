@@ -10,7 +10,7 @@ const JobRow = ({job}) => {
     }
     return (
         <tr  className="bg-white odd:bg-gray-50">
-            <td>{loggedInUserName}</td>
+            <td className='capitalize'>{loggedInUserName}</td>
             <td>{jobTitle}</td>
             <td>{jobPostingDate}</td>
             <td>{applicationDeadline}</td>
