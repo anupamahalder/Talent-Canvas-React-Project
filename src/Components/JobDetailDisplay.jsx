@@ -1,17 +1,64 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import Swal from "sweetalert2";
+import useAuth from "../Hooks/useAuth";
 
 const JobDetailDisplay = () => {
     // load data 
     const job = useLoaderData();
     const {_id,jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job;
 
+    // destructure auth context 
+    const {user,loginUser} = useAuth();
+    console.log(user,loginUser);
+
     const navigate = useNavigate();
 
     // handle apply button
-    const handleApplyBtn = () =>{
-        console.log('apply button clicked!');
-    }
+    const handleApplyBtn = async () => {
+        const { value: formValues } = await Swal.fire({
+          title: "Apply for the Job",
+          html: `
+            <input id="swal-input1" class="swal2-input" value=${user?.displayName||loginUser?.name} disabled>
+            <input id="swal-input2" class="swal2-input" value=${user?.email} disabled>
+            <input id="swal-input3" class="swal2-input" required placeholder="Enter Resume Link">
+          `,
+          focusConfirm: false,
+          preConfirm: () => {
+            return {
+              username: document.getElementById("swal-input1").value,
+              email: document.getElementById("swal-input2").value,
+              resumeLink: document.getElementById("swal-input3").value,
+            };
+          },
+        });
+      
+        if (formValues) {
+          // Now you have the form values (username, email, and resumeLink)
+          console.log(formValues);
+          //if resume link is not valid then show error
+          if (isValidURL(formValues.resumeLink)) {
+            Swal.fire({
+                title: "Good Job,\nSuccessfully Applied to the Job!",
+                text: `Applied with Resume Link: ${formValues.resumeLink}`,
+                icon: 'success'
+            });
+          } else {
+            console.log("Invalid resume link!");
+            Swal.fire({
+              icon: "error",
+              title: "Invalid Resume Link",
+              text: "Please enter a valid URL for the resume link.",
+            });
+          }
+        }
+    };
+    // Function to check if a string is a valid URL
+    const isValidURL = (url) => {
+        const pattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}(\/\S*)?$/;
+        return pattern.test(url);
+    };
+      
     return (
         <div className="relative mx-10 min-h-screen">
             <h1 className="mx-auto mt-10 mb-8 text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl">Details of the Job</h1>
