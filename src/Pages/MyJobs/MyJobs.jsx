@@ -1,8 +1,38 @@
+import { useEffect, useState } from "react";
+import useAuth from "../../Hooks/useAuth";
+import axios from "axios";
+import JobCard from "../../Components/JobCard";
 
 const MyJobs = () => {
+    // destructure auth context 
+    const {user} = useAuth(); 
+    // declare a state to store job data 
+    const [jobData, setJobData] = useState([]);
+    // load data by passing email as query params 
+    useEffect(()=>{
+        axios.get(`http://localhost:5050/myjobs?userEmail=${user.email}`)
+        .then(data=>{
+            // console.log(data.data);
+            setJobData(data.data);
+        })
+    },[]);
     return (
         <div className="min-h-screen">
-            <h1>My Jobs</h1>
+            {
+                jobData.length==0 ?
+                <div className="flex justify-center items-center w-full h-full">
+                    <p className="text-center text-2xl font-bold my-auto shadow-lg">You Have Not Added Any Jobs!</p>
+                </div>
+                : 
+                <div>
+                    <h1 className="mx-auto text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl py-10">My Jobs</h1>
+                    <div className="px-10 grid grid-cols-1 pb-20 md:grid-cols-2 gap-10 lg:grid-cols-3">
+                    {
+                        jobData.map(job=><JobCard key={job._id} job={job}></JobCard>)
+                    }
+                    </div>
+                </div>
+            }
         </div>
     );
 };

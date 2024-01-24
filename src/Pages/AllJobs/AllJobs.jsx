@@ -52,7 +52,7 @@ const AllJobs = () => {
         setJobs(filteredJobs);
     }
     return (
-        <>
+        <div className="min-h-screen">
         <div className="pt-10 px-10">
             {/* heading  */}
             <h1 className="mx-auto text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl">See All Jobs</h1>
@@ -94,7 +94,7 @@ const AllJobs = () => {
                 </tbody>
             </table>
             </div>
-        </>
+        </div>
     );
 };
 

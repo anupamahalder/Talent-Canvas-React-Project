@@ -7,9 +7,6 @@ const AddJobs = () => {
     // destructure authcontext values 
     const {user, loginUser} = useAuth();
 
-    // declare a state to store banner image url 
-    const [bannerImage, setBannerImage] = useState();
-
     // handle image url is valid or not 
     const handleImageUrl = (e) => {
         const imageUrl = e.target.value;
@@ -17,12 +14,12 @@ const AddJobs = () => {
       
         img.onload = () => {
           // Image loaded successfully
-          console.log('Image is valid:', imageUrl);
+        //   console.log('Image is valid:', imageUrl);
         };
       
         img.onerror = () => {
           // Image failed to load
-          console.error('Invalid image URL:', imageUrl);
+        //   console.error('Invalid image URL:', imageUrl);
           Swal.fire({
             title: "Invalid Image URL",
             text: "Please provide valid image url",
@@ -62,7 +59,7 @@ const AddJobs = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
+            // console.log(data);
             if(data.insertedId){
                 Swal.fire({
                     title: 'Sucessful!',
