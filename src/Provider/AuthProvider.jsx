@@ -44,9 +44,27 @@ const AuthProvider = ({children}) => {
         // clean up 
         return ()=>unSubscribe();
     },[]);
+    
+    // declare a state for storing all jobs data
+    const [allJob, setAllJob] = useState([]);
+
+    // load all job data 
+    useEffect(() => {
+        // Fetch all jobs only once
+        fetch('http://localhost:5050/alljobs')
+            .then(res => res.json())
+            .then(data => {
+                setAllJob(data);
+            })
+            .catch(error => {
+                console.error('Error fetching all jobs:', error);
+            });
+    }, []);
+
     const AuthInfo = {
         user, isLoading, createUser, googleSignIn,
         login, logOut, loginUser, setLoginUser,
+        allJob, setAllJob
     }
     return (
         <AuthContext.Provider value={AuthInfo}>

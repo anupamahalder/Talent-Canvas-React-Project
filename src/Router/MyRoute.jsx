@@ -21,12 +21,11 @@ const MyRoute = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home/>
+                element: <Home/>,
             },
             {
                 path: 'alljobs',
                 element: <AllJobs/>,
-                loader: ()=>fetch('http://localhost:5050/alljobs')
             },
             {
                 path: 'myjobs',

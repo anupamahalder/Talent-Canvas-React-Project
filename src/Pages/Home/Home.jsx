@@ -2,9 +2,11 @@ import { useState } from "react";
 import JobTabs from "../../Components/JobTabs";
 import AboutUs from "./AboutUs";
 import './home.css';
+
 const Home = () => {
     // declare a state for index
     const [index, setIndex] = useState(0);
+
 
     // handle search button 
     const hanldeSearch=(e)=>{

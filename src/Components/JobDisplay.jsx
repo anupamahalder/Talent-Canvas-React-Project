@@ -2,27 +2,27 @@ import axios from 'axios';
 import PropType from 'prop-types';
 import { useEffect, useState } from 'react';
 import JobCard from './JobCard';
+import useAuth from '../Hooks/useAuth';
 const JobDisplay = ({categoryName}) => {
     // declare state to hold job data 
     const [jobs, setJobs] = useState([]);
     // declare a state to hold the data of show all 
     const [isShowAll, setIsShowAll] = useState(false);
-    let url;
-    // set url 
-    if(categoryName == 'alljobs'){
-        url = 'http://localhost:5050/alljobs';
-    }
-    else{
-        url = `http://localhost:5050/jobs?category_key=${categoryName}`;
-    }
-    // load data 
-    useEffect(()=>{
-        axios.get(url)
-        .then(data =>{
-            const jobData = data.data;
-            setJobs(jobData);
-        })
-    },[]);
+    // destructure useAuth 
+    const {allJob} = useAuth();
+
+    useEffect(() => {
+        let jobData;
+
+        if (categoryName === 'alljobs') {
+            jobData = allJob;
+        } else {
+            jobData = allJob.filter(job => job.key_name === categoryName);
+        }
+
+        setJobs(jobData);
+    }, [categoryName, allJob]);
+    
     return (
         <div className='mx-auto mt-16'>
             <div className='px-10 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>

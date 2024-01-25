@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
 import JobRow from "./JobRow";
+import useAuth from "../../Hooks/useAuth";
 
 const AllJobs = () => {
-    // load jobs data 
-    const loadedJobs = useLoaderData();
+
+    const {allJob} = useAuth();
     // declare a state to store jobs data 
-    const [jobs, setJobs] = useState(loadedJobs);
+    const [jobs, setJobs] = useState(allJob);
 
     // handle recent post button 
     const handleRecentPost=()=>{
