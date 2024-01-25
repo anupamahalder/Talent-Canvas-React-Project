@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const JobTabs = ({index}) => {
     const [tabIndex, setTabIndex] = useState(index);
-    console.log('Hello index',index);
+    // console.log('Hello index',index);
     // changing tabIndex value with useEffect to handle side effects 
     useEffect(()=>{
       setTabIndex(index);

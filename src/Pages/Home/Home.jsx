@@ -1,7 +1,7 @@
 import { useState } from "react";
 import JobTabs from "../../Components/JobTabs";
 import AboutUs from "./AboutUs";
-
+import './home.css';
 const Home = () => {
     // declare a state for index
     const [index, setIndex] = useState(0);
@@ -18,42 +18,34 @@ const Home = () => {
         e.preventDefault();
         const search = e.target.search.value;
         if(search === ""){
-            console.log('bye');
+            // console.log('bye');
             return;
         }
         if(allJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
-            console.log(0);
             setIndex(0);
         }
         else if(fullTimeJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
-            console.log(1);
             setIndex(1);
         }
         else if(partTimeJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
-            console.log(2);
             setIndex(2);
         }
         else if(onSiteJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
-            console.log(3);
             setIndex(3);
         }
         else if(hybridJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
-            console.log(4);
             setIndex(4);
         }
         else if(remoteJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
-            console.log(5);
             setIndex(5);
         }
         else if(internJobs.toLocaleLowerCase().includes(search.toLocaleLowerCase())){
-            console.log(6);
             setIndex(6);
         }
         else{
-            console.log(0);
             setIndex(0);
         }
-        console.log(search);
+        // console.log(search);
     }
     return (
         <div className="min-h-screen">
@@ -65,8 +57,8 @@ const Home = () => {
                 <div className="absolute flex justify-center items-center top-0 h-full w-full bg-gradient-to-r from-[#0d0d0d59] via-[#080808bd] to-[#0d0d0d59]">
                     <div className="mx-auto justify-center">
                         {/* heading  */}
-                        <h1 className="mx-auto text-center text-white w-full text-4xl md:text-6xl font-bold">Where Your Talents Shine Bright</h1>
-                        <h1 className="text-center md:font-semibold text-gray-200 w-4/5 mx-auto my-6 md:text-xl">Your Gateway to Limitless Opportunities with Talent Canvas. Painting the Future of Your Career...</h1>
+                        <h1 id="typing-heading" data-text="Where Your Talents Shine Bright...">Where Your Talents Shine Bright...</h1>
+                        <h1 className="text-center md:font-semibold text-gray-200 w-4/5 mx-auto my-6 md:text-xl">Your Gateway to Limitless Opportunities with Talent Canvas. Painting the Future of Your Career</h1>
                         {/* search  */}
                         <div className="flex gap-2 mx-auto justify-center items-center">
                             <form onSubmit={hanldeSearch}>

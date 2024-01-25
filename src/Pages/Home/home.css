@@ -1,0 +1,31 @@
+#typing-heading{
+    position: relative;
+    font-size: 68px;
+    font-weight: 500;
+    color: transparent;
+    -webkit-text-stroke: .1vw rgb(3, 3, 51);
+}
+#typing-heading::before{
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    color: #fcf2f0;
+    -webkit-text-stroke: 0vw rgb(3, 3, 51);
+    border-right: 2px solid white;
+    overflow: hidden;
+    animation: animate 6s linear infinite;
+}
+@keyframes animate {
+    0%,10%,100%{
+        width: 0;
+    }
+    50%{
+        width: 50%;
+    }
+    70%,90%{
+        width: 103%;
+    }
+}
