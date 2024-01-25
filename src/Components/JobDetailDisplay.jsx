@@ -19,6 +19,28 @@ const JobDetailDisplay = () => {
 
     // handle apply button
     const handleApplyBtn = async () => {
+      
+      const currentDate = new Date().toISOString().split('T')[0];
+      console.log(currentDate);
+      // Assuming applicationDeadline is in the format 'YYYY-MM-DD'
+      const deadline = {applicationDeadline};
+      const targetDate = deadline.applicationDeadline;
+      console.log(targetDate);
+
+      // Convert targetDate to a comparable format (Date object)
+      const targetDateObject = new Date(targetDate);
+
+      // Compare dates
+      if (targetDateObject < new Date(currentDate)) {
+        console.log("Target date is in the past.");
+          Swal.fire({
+            title: "Oops!",
+            text: "Deadline is over!",
+            icon: 'info'
+          })
+        return;
+      }
+
         const { value: formValues } = await Swal.fire({
           title: "Apply for the Job",
           html: `

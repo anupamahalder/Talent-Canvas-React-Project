@@ -42,7 +42,7 @@ const AppliedJobs = () => {
     return (
         <div className="min-h-screen">
             {
-                allJob?.length==0 ?
+                showAppliedJob?.length==0 ?
                 <div className="flex justify-center items-center w-full h-full">
                     <p className="text-center text-2xl font-bold my-auto shadow-lg">You Have Not Applied To Any Jobs!</p>
                 </div>
