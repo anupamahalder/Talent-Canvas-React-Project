@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 
@@ -6,6 +6,8 @@ const AddJobs = () => {
     
     // destructure authcontext values 
     const {user, loginUser} = useAuth();
+
+    const formRef = useRef();
 
     // handle image url is valid or not 
     const handleImageUrl = (e) => {
@@ -70,11 +72,27 @@ const AddJobs = () => {
             }
         })
     }
+    // handle reset a form 
+    const handleResetForm = () =>{
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Do You want to reset the form?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Reset"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            formRef.current.reset();
+        }
+      });
+    }
     return (
         <div className='min-h-screen py-20 px-10 flex justify-center mb-20'>
-                <div className='bg-[#fbebe6] text-[#555555] w-[600px] p-4 shadow-2xl rounded-lg text-xl'>
+                <div className='bg-[#fbebe6] text-[#555555] w-[550px] p-4 shadow-2xl rounded-lg text-xl'>
                 <h1 className="mx-auto text-center font-bold uppercase text-3xl text-blue-800 drop-shadow-xl my-6">Add Your Job</h1>
-                    <form onSubmit={hanldeAddJob}  >
+                    <form onSubmit={hanldeAddJob} ref={formRef} >
                         {/* job title  */}
                         <span className='uppercase pl-4 font-semibold text-gray-700 mr-3'>Job Title:</span>
                         <input required className='outline pl-2 outline-1 mt-2 hover:outline-2 outline-slate-300 hover:outline-gray-800 rounded-md w-3/5' type="text" name="jobTitle" id="" /> <br /><br />
@@ -107,7 +125,11 @@ const AddJobs = () => {
                          min={new Date().toISOString().split('T')[0]}
                          id="customeDate" /> <br />
                          <div className='flex justify-center my-10'>
-                            <input type="reset" className='btn mr-2 text-xl bg-gray-500 text-white hover:bg-white hover:text-gray-800' value="Reset Form" />
+                          {
+                            // type="reset"
+                            <button onClick={handleResetForm} type='button'
+                             className='btn mr-2 text-xl bg-gray-500 text-white hover:bg-white hover:text-gray-800'>Reset Form</button>
+                          }
                          <input type="submit" className='btn text-2xl bg-[#FF6348] text-gray-700 hover:text-white hover:bg-red-700' value="Submit Job" />
                          </div>
                     </form>
