@@ -26,6 +26,30 @@
         width: 50%;
     }
     70%,90%{
-        width: 103%;
+        width: 101%;
+    }
+}
+
+/* Responsive Font Size for Small Mobile */
+@media only screen and (max-width: 480px) {
+    #typing-heading {
+        font-size: 32px;
+        -webkit-text-stroke: 0;
+        text-align: center;
+    }
+    #typing-heading::before{
+        -webkit-text-stroke: 0;
+    }
+}
+
+/* Responsive Font Size for Tablets */
+@media only screen and (min-width: 481px) and (max-width: 780px) {
+    #typing-heading {
+        font-size: 40px;
+        text-align: center;
+        -webkit-text-stroke: 0;
+    }
+    #typing-heading::before{
+        -webkit-text-stroke: 0;
     }
 }
