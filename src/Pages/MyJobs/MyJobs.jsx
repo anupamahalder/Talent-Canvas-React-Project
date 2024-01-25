@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
-import JobCard from "../../Components/JobCard";
+import MyJobCard from "./MyJobCard";
 
 const MyJobs = () => {
     // destructure auth context 
@@ -28,7 +28,7 @@ const MyJobs = () => {
                     <h1 className="mx-auto text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl py-10">My Jobs</h1>
                     <div className="px-10 grid grid-cols-1 pb-20 md:grid-cols-2 gap-10 lg:grid-cols-3">
                     {
-                        jobData.map(job=><JobCard key={job._id} job={job}></JobCard>)
+                        jobData.map(job=><MyJobCard key={job._id} job={job}></MyJobCard>)
                     }
                     </div>
                 </div>

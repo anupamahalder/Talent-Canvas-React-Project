@@ -13,7 +13,7 @@ const JobDetailDisplay = () => {
     // filter data by id     
     const job = allJob.filter(job=>job._id==id);
     // destructure required data 
-    const {_id,jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job[0];
+    const {jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job[0];
 
     const navigate = useNavigate();
 
@@ -32,12 +32,20 @@ const JobDetailDisplay = () => {
 
       // Compare dates
       if (targetDateObject < new Date(currentDate)) {
-        console.log("Target date is in the past.");
           Swal.fire({
             title: "Oops!",
             text: "Deadline is over!",
             icon: 'info'
           })
+        return;
+      }
+      // handle same person is posting the job or not 
+      if(job[0]?.userEmail == user.email){
+        Swal.fire({
+          title: "Oops!",
+          text: "You cannot apply to your own job post!",
+          icon: 'info'
+        })
         return;
       }
 

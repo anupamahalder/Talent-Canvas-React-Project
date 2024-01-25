@@ -17,12 +17,13 @@ const JobDisplay = ({categoryName}) => {
         if (categoryName === 'alljobs') {
             jobData = allJob;
         } else {
-            jobData = allJob.filter(job => job.key_name === categoryName);
+            console.log(categoryName);
+            jobData = allJob.filter(job => job.category_key == categoryName);
         }
-
+        console.log(allJob);
         setJobs(jobData);
     }, [categoryName, allJob]);
-    
+
     return (
         <div className='mx-auto mt-16'>
             <div className='px-10 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
