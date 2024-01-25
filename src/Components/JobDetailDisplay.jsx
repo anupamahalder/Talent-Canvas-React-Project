@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
@@ -7,14 +7,13 @@ import axios from "axios";
 
 const JobDetailDisplay = () => {
     // load data 
-    const job = useLoaderData();
-    const {_id,jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job;
-
     // destructure auth context 
-    const {user,loginUser} = useAuth();
-
-    // declare a state to store the applied job 
-    const [appliedJob, setAppliedJob] = useState();
+    const {user,loginUser, allJob} = useAuth();
+    const {id} = useParams();
+    // filter data by id     
+    const job = allJob.filter(job=>job._id==id);
+    // destructure required data 
+    const {_id,jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job[0];
 
     const navigate = useNavigate();
 
@@ -89,7 +88,7 @@ const JobDetailDisplay = () => {
             {/* arrow  */}
             <FaArrowLeftLong onClick={()=>navigate(-1)} className="text-3xl text-gray-500 absolute top-10 left-4 cursor-pointer"/>
         {/* job card  */}
-        <div className="md:flex justify-between rounded-lg md:gap-10 bg-gray-50">
+        <div className="md:flex justify-between rounded-lg md:gap-10 bg-gray-50 mb-20">
             {/* image  */}
             <div className="md:flex-1 flex justify-center items-center rounded-tl-lg rounded-bl-lg bg-gray-100 py-10">
                 <img src={jobBannerImageUrl} className="w-[500px] h-[300px] rounded-xl" alt="Job image" />
@@ -105,8 +104,10 @@ const JobDetailDisplay = () => {
                 <h1 className="mb-3"><span className="font-bold uppercase text-blue-900">Applicant Deadline:</span> {applicationDeadline || "N/A"}</h1>
                 <h1 className="mb-3"><span className="font-bold uppercase text-blue-900">Job Applicant Numbers:</span> {jobApplicantsNumber}</h1>
                 <div className="flex justify-center">
-                <button onClick={handleApplyBtn}
-                 className="btn bg-red-600 hover:bg-red-700 text-white">Apply Now</button>
+                <button onClick={handleApplyBtn} disabled={job[0]?.isApply}
+                 className="btn bg-red-600 hover:bg-red-700 text-white">{
+                  job[0]?.isApply ? "Already Applied" : "Apply Now"
+                 }</button>
                 </div>
             </div>
         </div>

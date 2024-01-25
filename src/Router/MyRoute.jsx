@@ -51,7 +51,6 @@ const MyRoute = createBrowserRouter([
             {
                 path: '/jobdetaildisplay/:id',
                 element: <PrivateRoute><JobDetailDisplay/></PrivateRoute>,
-                loader: ({params})=>fetch(`http://localhost:5050/job-detail/${params.id}`)
             }
         ]
     },
