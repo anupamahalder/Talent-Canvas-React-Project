@@ -2,6 +2,7 @@ import { useState } from "react";
 import JobTabs from "../../Components/JobTabs";
 import AboutUs from "./AboutUs";
 import './home.css';
+import ContactUs from "../../Components/ContactUs";
 
 const Home = () => {
     // declare a state for index
@@ -79,6 +80,8 @@ const Home = () => {
             </div>
             {/* about us section  */}
             <AboutUs/>
+            {/* Contact us section  */}
+            <ContactUs/>
         </div>
     );
 };
