@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
     return (
         <div className="">
-            <footer className="footer flex p-10 bg-neutral text-neutral-content">
+            <footer className="footer md:flex mx-auto p-10 bg-neutral text-neutral-content">
                 <div className="flex-1">
                     <div className="flex justify-center items-center gap-2">
                         <img className="w-10" src="/public/darkLogo.png" alt="" />

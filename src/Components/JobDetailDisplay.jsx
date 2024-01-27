@@ -116,15 +116,15 @@ const JobDetailDisplay = () => {
         <div className="relative mx-10 min-h-screen">
             <h1 className="mx-auto mt-10 mb-8 text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl">Details of the Job</h1>
             {/* arrow  */}
-            <FaArrowLeftLong onClick={()=>navigate(-1)} className="text-3xl text-gray-500 absolute top-10 left-4 cursor-pointer"/>
+            <FaArrowLeftLong onClick={()=>navigate(-1)} className="text-2xl md:text-3xl text-gray-500 absolute top-5 md:top-10 md:left-4 cursor-pointer"/>
         {/* job card  */}
-        <div className="md:flex justify-between rounded-lg md:gap-10 bg-gray-50 mb-20">
+        <div className="md:flex justify-between rounded-lg md:gap-10 md:bg-gray-50 mb-20">
             {/* image  */}
-            <div className="md:flex-1 flex justify-center items-center rounded-tl-lg rounded-bl-lg bg-gray-100 py-10">
+            <div className="md:flex-1 flex justify-center items-center rounded-tl-lg rounded-bl-lg md:bg-gray-100 py-10">
                 <img src={jobBannerImageUrl} className="w-[500px] h-[300px] rounded-xl" alt="Job image" />
             </div>
             {/* content  */}
-            <div className="md:flex-1 py-10">
+            <div className="md:flex-1 px-2 md:py-10">
                 <h1 className="text-3xl font-bold mb-6">{jobTitle}</h1>
                 <h1 className="mb-3"><span className="font-bold uppercase text-blue-900">Job Posted By:</span> {loggedInUserName}</h1>
                 <h1 className="mb-3"><span className="font-bold uppercase text-blue-900">Job Category:</span> {jobCategory}</h1>
