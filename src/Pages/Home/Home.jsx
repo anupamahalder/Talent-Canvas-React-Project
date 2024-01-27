@@ -5,6 +5,7 @@ import './home.css';
 import ContactUs from "../../Components/ContactUs";
 import Testimonial from "../../Components/Testimonial";
 import StepsForApply from "../../Components/StepsForApply";
+import About from "../../Components/About";
 
 const Home = () => {
     // declare a state for index
@@ -77,13 +78,16 @@ const Home = () => {
             </div>
             {/* job tab section  */}
             <div className="mb-10">
-                <h1 className="my-10 text-[#FF6348] text-center text-3xl md:text-4xl lg:text-5xl font-bold">Find Your Jobs</h1>
+                <h1 className="my-10 drop-shadow-lg text-[#FF6348] text-center text-3xl md:text-4xl lg:text-5xl
+                 font-bold">Find Your Jobs</h1>
                 <JobTabs index={index}></JobTabs>
             </div>
             {/* testimonial section  */}
             <Testimonial/>
             {/* easy apply for jobs  */}
             <StepsForApply/>
+            {/* about us  */}
+            <About></About>
         </div>
     );
 };
