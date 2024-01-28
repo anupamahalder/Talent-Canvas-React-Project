@@ -10,10 +10,15 @@ const JobDetailDisplay = () => {
     // destructure auth context 
     const {user,loginUser, allJob} = useAuth();
     const {id} = useParams();
+    
     // filter data by id     
     const job = allJob.filter(job=>job._id==id);
     // destructure required data 
     const {jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job[0];
+    // declare a state 
+    const [applicantNo, setApplicantNo] = useState(jobApplicantsNumber);
+    const [isApplied, setIsApplied] = useState(job[0]?.isApply);
+    console.log('Is apply', isApplied);
 
     const navigate = useNavigate();
 
@@ -71,7 +76,7 @@ const JobDetailDisplay = () => {
         //   console.log(formValues);
           //if resume link is not valid then show error
           if (isValidURL(formValues.resumeLink)) {
-            const jobId = _id;
+            const jobId = id;
             const applyJobData = {...formValues,jobId};
             axios.post('http://localhost:5050/appliedjob',applyJobData)
             .then(data=>{
@@ -83,6 +88,15 @@ const JobDetailDisplay = () => {
                         icon: 'success'
                     });
                     console.log(applyJobData);
+                    // increment applicant value by 1 to database 
+                    axios.post(`http://localhost:5050/update-job-increment/${id}`)
+                    .then(data=>{
+                      console.log(data.data);
+                      // update applicant number in the UI
+                      setApplicantNo(applicantNo+1);
+                      // update the apply button 
+                      setIsApplied(true);
+                    })
                 }
                 else{
                     Swal.fire({
@@ -125,18 +139,18 @@ const JobDetailDisplay = () => {
             </div>
             {/* content  */}
             <div className="md:flex-1 px-2 md:py-10">
-                <h1 className="text-3xl font-bold mb-6">{jobTitle}</h1>
+                <h1 className="text-3xl font-bold mb-6 capitalize">{jobTitle}</h1>
                 <h1 className="mb-3"><span className="font-bold uppercase text-blue-900">Job Posted By:</span> {loggedInUserName}</h1>
                 <h1 className="mb-3"><span className="font-bold uppercase text-blue-900">Job Category:</span> {jobCategory}</h1>
                 <h1 className="mb-3"><span className="font-bold uppercase text-blue-900">Salary Range:</span> {salaryRange}</h1>
-                <h1 className="mb-3"><span className="font-bold uppercase text-[#793c26]">Job Description:</span><br /> {jobDescription}</h1>
+                <h1 className="mb-3 capitalize"><span className="font-bold uppercase text-[#793c26]">Job Description:</span><br /> {jobDescription}</h1>
                 <h1 className="mb-3"><span className="font-bold uppercase text-blue-900">Job Posting Date:</span> {jobPostingDate}</h1>
                 <h1 className="mb-3"><span className="font-bold uppercase text-blue-900">Applicant Deadline:</span> {applicationDeadline || "N/A"}</h1>
-                <h1 className="mb-3"><span className="font-bold uppercase text-blue-900">Job Applicant Numbers:</span> {jobApplicantsNumber}</h1>
+                <h1 className="mb-3"><span className="font-bold uppercase text-blue-900">Job Applicant Numbers:</span> {applicantNo}</h1>
                 <div className="flex justify-center">
-                <button onClick={handleApplyBtn} disabled={job[0]?.isApply}
+                <button onClick={handleApplyBtn} disabled={isApplied}
                  className="btn bg-red-600 hover:bg-red-700 text-white">{
-                  job[0]?.isApply ? "Already Applied" : "Apply Now"
+                  isApplied ? "Already Applied" : "Apply Now"
                  }</button>
                 </div>
             </div>

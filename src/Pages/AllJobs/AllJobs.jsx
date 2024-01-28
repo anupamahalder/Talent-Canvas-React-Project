@@ -37,7 +37,7 @@ const AllJobs = () => {
     // handle all post button
     const handleAllPost=()=>{
         console.log('Cliceked all post button');
-        setJobs(loadedJobs);
+        setJobs(allJob);
     }
     // handle search button 
     const handleSearchBtn=(e)=>{
@@ -48,7 +48,7 @@ const AllJobs = () => {
             return;
         }
         console.log(search);
-        const filteredJobs = loadedJobs.filter(job =>job.jobTitle.toLowerCase().includes(search.toLowerCase()));
+        const filteredJobs = jobs.filter(job =>job.jobTitle.toLowerCase().includes(search.toLowerCase()));
         setJobs(filteredJobs);
     }
     return (

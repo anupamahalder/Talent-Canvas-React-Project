@@ -11,7 +11,7 @@ const Testimonial = () => {
                     <div className="h-full text-center">
                     <img alt="testimonial" className="w-40 h-40 md:w-60 md:h-60 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="https://images.unsplash.com/photo-1548142813-c348350df52b?q=80&w=1378&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
                     <p className="leading-relaxed">Thanks to this job searching website, I found my dream job effortlessly. The intuitive interface, tailored job recommendations, and timely alerts streamlined my search. I'm now thriving in a position perfectly aligned with my skills and aspirations.</p>
-                    <span class="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
+                    <span className="inline-block h-1 w-10 rounded bg-indigo-500 mt-6 mb-4"></span>
                     <h2 className="text-gray-900 font-medium title-font tracking-wider text-xl md:text-2xl">Priya Patel</h2>
                     <p className="text-gray-500 md:text-xl font-semibold">Senior Product Designer</p>
                     </div>
