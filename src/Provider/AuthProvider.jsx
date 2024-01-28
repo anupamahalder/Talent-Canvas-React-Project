@@ -59,7 +59,7 @@ const AuthProvider = ({children}) => {
             .catch(error => {
                 console.error('Error fetching all jobs:', error);
             });
-    }, []);
+    }, [setAllJob]);
 
     const AuthInfo = {
         user, isLoading, createUser, googleSignIn,

@@ -48,7 +48,7 @@ const AppliedJobs = () => {
                 </div>
                 : 
                 <div>
-                    <h1 className="mx-auto text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl py-10">Applied Jobs</h1>
+                    <h1 className="mx-auto text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl pt-10 pb-16">Applied Jobs</h1>
                     <div className="px-10 grid grid-cols-1 pb-20 md:grid-cols-2 gap-10 lg:grid-cols-3">
                     {
                         showAppliedJob.map(job=><JobCard key={job._id} job={job}></JobCard>)

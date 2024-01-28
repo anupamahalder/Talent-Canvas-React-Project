@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 const AddJobs = () => {
     
     // destructure authcontext values 
-    const {user, loginUser} = useAuth();
+    const {user, loginUser, setAllJob, allJob} = useAuth();
 
     const formRef = useRef();
 
@@ -47,10 +47,10 @@ const AddJobs = () => {
         const jobDescription = form.jobDescription.value;
         const jobPostingDate = new Date().toISOString().split('T')[0];
         const applicationDeadline = form.applicationDeadline.value;
-        const applicantNumber = 0;
+        const jobApplicantsNumber = 0;
         const salaryRange = `$${lowestSalary}-$${highestSalary}`;
         // make an object to post data to the server 
-        const jobDetails = {jobTitle,jobBannerImageUrl,loggedInUserName, userEmail,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,applicantNumber};
+        const jobDetails = {jobTitle,jobBannerImageUrl,loggedInUserName, userEmail,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber};
 
         fetch('http://localhost:5050/alljobs',{
             method: 'POST',
@@ -63,6 +63,7 @@ const AddJobs = () => {
         .then(data=>{
             // console.log(data);
             if(data.insertedId){
+                setAllJob([...allJob, jobDetails]);
                 Swal.fire({
                     title: 'Sucessful!',
                     text: "Job Added Successfully to Database",

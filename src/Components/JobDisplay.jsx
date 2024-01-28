@@ -17,10 +17,8 @@ const JobDisplay = ({categoryName}) => {
         if (categoryName === 'alljobs') {
             jobData = allJob;
         } else {
-            console.log(categoryName);
             jobData = allJob.filter(job => job.category_key == categoryName);
         }
-        console.log(allJob);
         setJobs(jobData);
     }, [categoryName, allJob]);
 

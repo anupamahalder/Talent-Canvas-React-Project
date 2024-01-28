@@ -1,6 +1,9 @@
 import PropType from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { MdDelete } from "react-icons/md";
+import { FaEye } from "react-icons/fa";
+import { CiEdit } from "react-icons/ci";
 
 const MyJobCard = ({job}) => {
     // destructure job object 
@@ -19,26 +22,20 @@ const MyJobCard = ({job}) => {
                 <img
                 src={jobBannerImageUrl} alt={jobTitle}/>
             </div>
-            <div className="p-4">
-                <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                {jobTitle}
-                </h5>
-                <p>Posted On: {jobPostingDate}</p>
-                <p>Application Deadline: {applicationDeadline}</p>
+            <div className="p-4 text-gray-600 space-y-1">
+                <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-black h-8 overflow-hidden">
+                {jobTitle}</h5>
+                <p><span className='font-bold'>Posted By:</span> {loggedInUserName}</p>
+                <p><span className='font-bold'>Application Deadline:</span> {applicationDeadline}</p>
+                <p><span className='font-bold'>Salary Range:</span> {salaryRange}</p>
+                <p><span className='font-bold'>Applicants:</span> {jobApplicantsNumber}</p>
             </div>
-            <div className="pb-4 pt-3 flex gap-4 px-auto mx-auto">
-                <button
-                    className="mx-auto select-none rounded-lg bg-[#ce2323] hover:bg-[#561c12] py-3.5 px-8 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-[#915146]/20 transition-all hover:shadow-lg hover:shadow-[#472923]/60 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                    type="button"
-                    data-ripple-light="true">Delete</button>
-                <Link to=''>
-                <button onClick={handleUpdateBtn}
-                className="mx-auto select-none rounded-lg bg-[#3b73e4] hover:bg-[#1a2460] py-3.5 px-8 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-[#915146]/20 transition-all hover:shadow-lg hover:shadow-[#472923]/60 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                type="button"
-                data-ripple-light="true"
-                >
-                Update
-                </button>
+            <div className="pb-6 flex gap-4 px-auto text-white mx-auto">
+                <FaEye className='bg-blue-700 text-4xl p-1 rounded-full'/>
+                <CiEdit className='bg-green-700 text-4xl p-1 rounded-full' />
+                <MdDelete className='bg-red-700 text-4xl p-1 rounded-full'/>
+                <Link to='' onClick={handleUpdateBtn}>
+                
                 </Link>
             </div>
             </div>
