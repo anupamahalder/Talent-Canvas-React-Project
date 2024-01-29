@@ -10,14 +10,14 @@ const JobDetailDisplay = () => {
     // destructure auth context 
     const {user,loginUser, allJob} = useAuth();
     const {id} = useParams();
-    
     // filter data by id     
-    const job = allJob.filter(job=>job._id==id);
+    const job = allJob.find(item=>item._id===id);
+    console.log(job);
     // destructure required data 
-    const {jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job[0];
+    const {jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job;
     // declare a state 
     const [applicantNo, setApplicantNo] = useState(jobApplicantsNumber);
-    const [isApplied, setIsApplied] = useState(job[0]?.isApply);
+    const [isApplied, setIsApplied] = useState(job?.isApply);
 
     const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ const JobDetailDisplay = () => {
         return;
       }
       // handle same person is posting the job or not 
-      if(job[0]?.userEmail == user.email){
+      if(job?.userEmail == user.email){
         Swal.fire({
           title: "Oops!",
           text: "You cannot apply to your own job post!",

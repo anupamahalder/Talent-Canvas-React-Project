@@ -4,16 +4,49 @@ import { Link } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
+import Swal from 'sweetalert2';
+import useAuth from '../../Hooks/useAuth';
 
-const MyJobCard = ({job}) => {
+const MyJobCard = ({job, setMyJobData, myJobData}) => {
+    const {setAllJob} = useAuth();
+
     // destructure job object 
     const {_id,jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job;
-    // declare a state 
-    const [updateData, setUpdateData] = useState([]);
-    // handle update button 
-    const handleUpdateBtn = () =>{
-        console.log('update btn is clicked!', _id);
-
+    // handle delete btn 
+    const handleDeleteBtn = () =>{
+        Swal.fire({
+            title: "Do you want to delete?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fetch(`http://localhost:5050/delete-job/${_id}`,{
+                method: 'DELETE'
+              })
+              .then(res=>res.json())
+              .then(data =>{
+                if(data.deletedCount > 0){
+                    const updatedMyJobData = myJobData.filter(job =>job._id !== _id);
+                    setMyJobData(updatedMyJobData);
+                    // load alll jobs 
+                    fetch('http://localhost:5050/alljobs')
+                    .then(res=>res.json())
+                    .then(data=>{
+                        setAllJob(data);
+                    })
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                      });
+                }
+              })
+            }
+          });        
     }
     return (
         <div className='pb-10'>
@@ -26,6 +59,7 @@ const MyJobCard = ({job}) => {
                 <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-black h-8 overflow-hidden">
                 {jobTitle}</h5>
                 <p><span className='font-bold'>Posted By:</span> {loggedInUserName}</p>
+                <p><span className='font-bold'>Job Category:</span> {jobCategory}</p>
                 <p><span className='font-bold'>Application Deadline:</span> {applicationDeadline}</p>
                 <p><span className='font-bold'>Salary Range:</span> {salaryRange}</p>
                 <p><span className='font-bold'>Applicants:</span> {jobApplicantsNumber}</p>
@@ -35,9 +69,9 @@ const MyJobCard = ({job}) => {
                 <FaEye title='See Details' className='bg-blue-700 text-4xl p-1 rounded-full'/>
                 </Link>
                 <Link to={`/myjobupdate/${_id}`}>
-                <CiEdit title='Update' className='bg-green-700 text-4xl p-1 rounded-full' />
+                <CiEdit title='Update' className='bg-green-700 font-bold text-4xl p-1 rounded-full' />
                 </Link>
-                <MdDelete title='Delete' className='bg-red-700 text-4xl p-1 rounded-full'/>
+                <MdDelete onClick={handleDeleteBtn} title='Delete' className='bg-red-700 text-4xl p-1 rounded-full'/>
             </div>
             </div>
         </div>
@@ -46,5 +80,7 @@ const MyJobCard = ({job}) => {
 // Added proptypes 
 MyJobCard.propTypes = {
     job: PropType.object.isRequired,
+    setMyJobData: PropType.func.isRequired,
+    myJobData: PropType.array.isRequired
 }
 export default MyJobCard;

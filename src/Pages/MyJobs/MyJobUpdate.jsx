@@ -18,6 +18,10 @@ const MyJobUpdate = () => {
     },[]);
     // destructure updateJob 
     const {_id,jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = updateJob;
+    // declare a state to store the category 
+    const [selectedCategory, setSelectedCategory] = useState(category_key || '');
+    console.log(selectedCategory);
+    console.log(category_key);
     // Remove "$" and split the string by "-"
     const parseSalary = (salary) => {
       if (!salary) {
@@ -64,6 +68,7 @@ const MyJobUpdate = () => {
       
         img.src = imageUrl;
       };
+      const categoryIndex = [{"fulltime":"Full Time"},{"parttime":"Part Time"},{"onsite":"On Site"},{"hybrid":"Hybrid"},{"remote":"Remote"}, {"intern":"Intern"}];
 
     // handle add jobs 
     const hanldeAddJob = (e) =>{
@@ -71,8 +76,12 @@ const MyJobUpdate = () => {
         const form = e.target;
         const jobTitle = form.jobTitle.value;
         const jobBannerImageUrl = form.bannerUrl.value;
-        const category_key = form.jobCategory.value;
-        const jobCategory = form.jobCategory.options[form.jobCategory.selectedIndex].getAttribute('fullname');
+        const category_key = selectedCategory || category_key;
+        const selectedCategoryObject = categoryIndex.find(categoryObj =>
+          Object.keys(categoryObj)[0] === selectedCategory
+        );
+        // Get the category value
+        const jobCategory = selectedCategoryObject ? selectedCategoryObject[selectedCategory] : 'fulltime';
         const highestSalary = form.highestSalary.value;
         const lowestSalary = form.lowestSalary.value;
         const jobDescription = form.jobDescription.value;
@@ -80,7 +89,7 @@ const MyJobUpdate = () => {
         const salaryRange = `$${lowestSalary}-$${highestSalary}`;
         // make an object to post data to the server 
         const jobDetails = {jobTitle,jobBannerImageUrl,jobCategory,category_key,salaryRange,jobDescription,applicationDeadline};
-
+        console.log(jobDetails);
         fetch(`http://localhost:5050/update-job/${_id}`,{
             method: 'PUT',
             headers:{
@@ -120,21 +129,23 @@ const MyJobUpdate = () => {
                         <input onBlur={handleImageUrl} defaultValue={jobBannerImageUrl} required className='ml-6 pl-2 outline mt-2 outline-1 outline-slate-300 rounded-lg w-4/5 hover:outline-2 hover:outline-gray-800' type="text" name="bannerUrl" id="" /><br /><br />
                         {/* select job category  */}
                         <span className='uppercase pl-4 font-semibold text-gray-700'>Choose Job Category: </span>
-
-                        <select name="jobCategory" value={category_key} className='bg-white py-1 w-1/3 ml-2 pl-2 outline mt-2 outline-1 outline-slate-300 rounded-lg hover:outline-2 hover:outline-gray-800' id="jobCategory">
-                        <option value="fulltime" fullname="Full Time Job" 
-                        >Full Time Job</option>
-                        <option value="parttime" fullname="Part Time Job" 
-                        >Part Time Job</option>
-                        <option value="remote" fullname="Remote Job" 
-                        >Remote Job</option>
-                        <option value="hybrid" fullname="Hybrid Job" 
-                        >Hybrid Job</option>
-                        <option value="onsite" fullname="On Site Job" 
-                        >On Site Job</option>
-                        <option value="intern" fullname="Intern Job" 
-                        >Intern Job</option>
-                        </select> <br /><br />
+                        {/* select job category  */}
+                        <select
+                          name="jobCategory"
+                          // defaultValue={category_key}
+                          onChange={(e) => setSelectedCategory(e.target.value)}
+                          className='bg-white py-1 w-1/3 ml-2 pl-2 outline mt-2 outline-1 outline-slate-300 rounded-lg hover:outline-2 hover:outline-gray-800'
+                          id="jobCategory"
+                        >
+                          {categoryIndex.map((categoryObj, index) => {
+                            const [categoryKey, categoryValue] = Object.entries(categoryObj)[0];
+                            return (
+                              <option key={index} value={categoryKey} selected={categoryKey === category_key}>
+                                {categoryValue}
+                              </option>
+                            );
+                          })}
+                        </select><br /><br />
 
                         {/* salary range  */}
                         <span className='uppercase pl-4 font-semibold text-gray-700'>Salary Range:</span><br />
@@ -142,13 +153,13 @@ const MyJobUpdate = () => {
                         <input required defaultValue={highestSalary} type="number" className='mt-2 w-40 px-2 outline outline-1 outline-slate-300 rounded-lg hover:outline-2 hover:outline-gray-800' name='highestSalary' placeholder='highest salary' /> <br /><br />
                         {/* job description  */}
                         <span className='uppercase pl-4 font-semibold text-gray-700'>Job Description:</span><br />
-                        <textarea required defaultValue={jobDescription} name="jobDescription" className='outline outline-1 pl-2 outline-slate-300 rounded-lg mt-2 w-5/6 mx-6 hover:outline-2 hover:outline-gray-800' id="" cols="10" rows="5"></textarea><br /><br />
+                        <textarea required defaultValue={jobDescription}
+                        name="jobDescription" className='outline outline-1 pl-2 outline-slate-300 rounded-lg mt-2 w-5/6 mx-6 hover:outline-2 hover:outline-gray-800' id="" cols="10" rows="5"></textarea><br /><br />
                         {/* date input  */}
                         <span className='uppercase pl-4 font-semibold text-gray-700'>Application Deadline:  </span>
-                        <input required
+                        <input required defaultValue={applicationDeadline}
                          className='outline outline-1 px-2 outline-slate-300 rounded-lg hover:outline-2 hover:outline-gray-800' type="date" placeholder='select date' name="applicationDeadline" 
                          min={new Date().toISOString().split('T')[0]}
-                         defaultValue={applicationDeadline}
                          id="customeDate" /> <br />
                          <div className='flex justify-center my-10'>
                           {
