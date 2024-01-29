@@ -89,7 +89,6 @@ const MyJobUpdate = () => {
         const salaryRange = `$${lowestSalary}-$${highestSalary}`;
         // make an object to post data to the server 
         const jobDetails = {jobTitle,jobBannerImageUrl,jobCategory,category_key,salaryRange,jobDescription,applicationDeadline};
-        console.log(jobDetails);
         fetch(`http://localhost:5050/update-job/${_id}`,{
             method: 'PUT',
             headers:{
