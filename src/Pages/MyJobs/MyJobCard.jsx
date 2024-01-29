@@ -22,7 +22,7 @@ const MyJobCard = ({job}) => {
                 <img
                 src={jobBannerImageUrl} alt={jobTitle}/>
             </div>
-            <div className="p-4 text-gray-600 space-y-1">
+            <div className="p-4 text-gray-600 space-y-1 capitalize">
                 <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-black h-8 overflow-hidden">
                 {jobTitle}</h5>
                 <p><span className='font-bold'>Posted By:</span> {loggedInUserName}</p>
@@ -30,13 +30,14 @@ const MyJobCard = ({job}) => {
                 <p><span className='font-bold'>Salary Range:</span> {salaryRange}</p>
                 <p><span className='font-bold'>Applicants:</span> {jobApplicantsNumber}</p>
             </div>
-            <div className="pb-6 flex gap-4 px-auto text-white mx-auto">
-                <FaEye className='bg-blue-700 text-4xl p-1 rounded-full'/>
-                <CiEdit className='bg-green-700 text-4xl p-1 rounded-full' />
-                <MdDelete className='bg-red-700 text-4xl p-1 rounded-full'/>
-                <Link to='' onClick={handleUpdateBtn}>
-                
+            <div className="pb-6 flex gap-4 px-auto cursor-pointer text-white mx-auto">
+                <Link to={`/jobdetaildisplay/${_id}`}>
+                <FaEye title='See Details' className='bg-blue-700 text-4xl p-1 rounded-full'/>
                 </Link>
+                <Link to={`/myjobupdate/${_id}`}>
+                <CiEdit title='Update' className='bg-green-700 text-4xl p-1 rounded-full' />
+                </Link>
+                <MdDelete title='Delete' className='bg-red-700 text-4xl p-1 rounded-full'/>
             </div>
             </div>
         </div>

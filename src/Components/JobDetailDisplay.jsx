@@ -18,7 +18,6 @@ const JobDetailDisplay = () => {
     // declare a state 
     const [applicantNo, setApplicantNo] = useState(jobApplicantsNumber);
     const [isApplied, setIsApplied] = useState(job[0]?.isApply);
-    console.log('Is apply', isApplied);
 
     const navigate = useNavigate();
 
@@ -26,11 +25,9 @@ const JobDetailDisplay = () => {
     const handleApplyBtn = async () => {
       
       const currentDate = new Date().toISOString().split('T')[0];
-      console.log(currentDate);
       // Assuming applicationDeadline is in the format 'YYYY-MM-DD'
       const deadline = {applicationDeadline};
       const targetDate = deadline.applicationDeadline;
-      console.log(targetDate);
 
       // Convert targetDate to a comparable format (Date object)
       const targetDateObject = new Date(targetDate);
@@ -80,7 +77,6 @@ const JobDetailDisplay = () => {
             const applyJobData = {...formValues,jobId};
             axios.post('http://localhost:5050/appliedjob',applyJobData)
             .then(data=>{
-                console.log(data.data);
                 if(data.data.insertedId){
                     Swal.fire({
                         title: "Good Job,\nSuccessfully Applied to the Job!",
@@ -111,7 +107,6 @@ const JobDetailDisplay = () => {
             })
             
           } else {
-            console.log("Invalid resume link!");
             Swal.fire({
               icon: "error",
               title: "Invalid Resume Link",
