@@ -8,6 +8,7 @@ const MyJobUpdate = () => {
     const id = useParams();
     // declare a state for storing the job data for update 
     const [updateJob, setUpdateJob] = useState([]);
+  
     // load job data 
     useEffect(()=>{
       fetch(`http://localhost:5050/job-detail/${id?.id}`)
@@ -20,8 +21,7 @@ const MyJobUpdate = () => {
     const {_id,jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = updateJob;
     // declare a state to store the category 
     const [selectedCategory, setSelectedCategory] = useState(category_key || '');
-    console.log(selectedCategory);
-    console.log(category_key);
+    
     // Remove "$" and split the string by "-"
     const parseSalary = (salary) => {
       if (!salary) {
@@ -76,7 +76,7 @@ const MyJobUpdate = () => {
         const form = e.target;
         const jobTitle = form.jobTitle.value;
         const jobBannerImageUrl = form.bannerUrl.value;
-        const category_key = selectedCategory || category_key;
+        const category_key = selectedCategory;
         const selectedCategoryObject = categoryIndex.find(categoryObj =>
           Object.keys(categoryObj)[0] === selectedCategory
         );
@@ -103,7 +103,8 @@ const MyJobUpdate = () => {
                 fetch(`http://localhost:5050/job-detail/${_id}`)
                 .then(res=>res.json())
                 .then(data =>{
-                  setAllJob([...allJob,data]);
+                  const updateJobData = allJob.filter(item=>item.id != _id);
+                  setAllJob([...updateJobData,data]);
                 })
                 Swal.fire({
                     title: 'Updated Sucessful!',
