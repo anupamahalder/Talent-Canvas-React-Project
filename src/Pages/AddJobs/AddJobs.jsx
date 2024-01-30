@@ -61,9 +61,14 @@ const AddJobs = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-            // console.log(data);
             if(data.insertedId){
-                setAllJob([...allJob, jobDetails]);
+              // load single data 
+              const jobId = data.insertedId;
+              fetch(`http://localhost:5050/job-detail/${jobId}`)
+              .then(res=>res.json())
+              .then(jobData=>{
+                setAllJob([...allJob, jobData]);
+              })
                 Swal.fire({
                     title: 'Sucessful!',
                     text: "Job Added Successfully to Database",

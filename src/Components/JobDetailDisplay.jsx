@@ -12,7 +12,6 @@ const JobDetailDisplay = () => {
     const {id} = useParams();
     // filter data by id     
     const job = allJob.find(item=>item._id===id);
-    console.log(job);
     // destructure required data 
     const {jobBannerImageUrl,jobTitle,loggedInUserName,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber} = job;
     // declare a state 
