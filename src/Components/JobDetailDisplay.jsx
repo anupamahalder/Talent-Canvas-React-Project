@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
 import { useState } from "react";
 import axios from "axios";
+import emailjs from '@emailjs/browser';
+
 
 const JobDetailDisplay = () => {
     // load data 
@@ -76,13 +78,12 @@ const JobDetailDisplay = () => {
             const applyJobData = {...formValues,jobId};
             axios.post('http://localhost:5050/appliedjob',applyJobData)
             .then(data=>{
-                if(data.data.insertedId){
+                if(data.data.insertedId){ 
                     Swal.fire({
                         title: "Good Job,\nSuccessfully Applied to the Job!",
                         text: `Applied with Resume Link: ${formValues.resumeLink}`,
                         icon: 'success'
                     });
-                    console.log(applyJobData);
                     // increment applicant value by 1 to database 
                     axios.post(`http://localhost:5050/update-job-increment/${id}`)
                     .then(data=>{
@@ -92,6 +93,27 @@ const JobDetailDisplay = () => {
                       // update the apply button 
                       setIsApplied(true);
                     })
+                    // send email
+                    const mailData ={
+                      job_holder_name: loggedInUserName,
+                      applier_name: user?.displayName || loginUser?.name,
+                      jobId: id,
+                      jobTitle: jobTitle,
+                      resumeLink: formValues.resumeLink,
+                      applier_email: user?.email,
+                      job_holder_email: job?.userEmail || "anupamahalder2020@gmail.com"
+                    }
+   
+                    emailjs.send('service_evzvpfc', 'template_55gqpur', mailData)
+                        .then(function(response) {
+                          Swal.fire({
+                            title: 'Email has sent to you',
+                            icon: 'success'
+                          })
+                           console.log('SUCCESS!', response.status, response.text);
+                        }, function(error) {
+                           console.log('FAILED...', error);
+                        });
                 }
                 else{
                     Swal.fire({
