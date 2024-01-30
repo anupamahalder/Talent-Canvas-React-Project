@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../Hooks/useAuth';
 import JobCard from '../../Components/JobCard';
+import { usePDF } from 'react-to-pdf';
+import { FaDownload } from "react-icons/fa";
+
 
 const AppliedJobs = () => {
     // declare a state for storing applied data
     const [appliedJob, setAppliedJob] = useState([]);
     const [showAppliedJob, setShowAppliedJob] = useState([]);
     const [selectedJobCategory, setSelectedJobCategory] = useState('alljobs');
+    const { toPDF, targetRef } = usePDF({filename: 'appliedJob.pdf'});
 
     // destructure auth context 
     const {allJob, setAllJob, user} = useAuth();
@@ -65,10 +69,15 @@ const AppliedJobs = () => {
                     <p className="text-center text-2xl font-bold my-auto shadow-lg">You Have Not Applied To Any Jobs!</p>
                 </div>
                 : 
-                <div className=''>
+                <div className=''  ref={targetRef}>
                     <h1 className="mx-auto text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl pt-10">Applied Jobs</h1>
                     {/* sort by job category  */}
-                    <div className='mb-12 mt-4 flex justify-end px-8 md:px-16 items-center'>
+                    <div className='mb-12 mt-4 md:flex md:justify-between px-8 md:px-16 items-center'>
+                        <div className='flex justify-center items-center gap-2 bg-pink-700 text-white p-2 rounded-lg font-bold'>
+                        <FaDownload/>
+                        <button onClick={() => toPDF()}>Download PDF</button>
+                        </div>
+                        <div>
                         <span className='text-green-700 font-bold uppercase'>Sort By Job Category: </span>
                         <select name="jobSelectCategory"
                          onChange={handleJobCategory}
@@ -82,6 +91,7 @@ const AppliedJobs = () => {
                             <option value="intern">Intern</option>
                             <option value="onsite">On Site</option>
                         </select>
+                        </div>
                     </div>
                     {
                         selectedJobCategory.length==0 ? 
@@ -91,7 +101,7 @@ const AppliedJobs = () => {
                         </div>
                         </div>
                         :
-                        <div className="px-10 mx-auto grid grid-cols-1 pb-20 md:grid-cols-2 gap-10 lg:grid-cols-3">
+                        <div className="px-10 mx-auto grid grid-cols-1 pb-20 md:grid-cols-2 gap-10 lg:grid-cols-3" >
                         {
                             selectedJobCategory.map(job=><JobCard key={job._id} job={job}></JobCard>)
                         }

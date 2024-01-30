@@ -48,7 +48,7 @@ const Navbar = () => {
             <div className="flex-1 px-2 py-2 mx-2 justify-end md:justify-start">
                 <div className="flex flex-row-reverse md:flex-row gap-2 justify-center items-center">
                     <img className="w-[40px] md:w-[50px]" src="/logo.png" alt="" />
-                    <h1 className="text-2xl text-[#ff6348] md:text-4xl">Talent Canvas</h1>
+                    <h1 className="text-xl md:text-2xl text-[#ff6348] lg:text-4xl">Talent Canvas</h1>
                 </div>
             </div>
             <div className="flex-none hidden lg:block">
