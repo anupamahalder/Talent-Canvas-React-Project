@@ -56,6 +56,9 @@ const Home = () => {
     }
     return (
         <div className="min-h-screen">
+            <Helmet>
+                <title>Talent Canvas | Home</title>
+            </Helmet>
             {/* banner section  */}
             <div className="relative">
                 <img className="h-[450px] md:h-[650px] w-full object-cover object-center"

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 import MyJobCard from "./MyJobCard";
+import { Helmet } from "react-helmet";
 
 const MyJobs = () => {
     // destructure auth context 
@@ -19,6 +20,9 @@ const MyJobs = () => {
     
     return (
         <div className="min-h-screen">
+            <Helmet>
+                <title>Talent Canvas | My Jobs</title>
+            </Helmet>
             {
                 myJobData.length==0 ?
                 <div className="flex justify-center items-center w-full h-full">

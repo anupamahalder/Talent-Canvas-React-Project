@@ -1,81 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Blog from './Blog';
+import { Helmet } from 'react-helmet';
 
 const Blogs = () => {
-    const blogs = [
+    const [readMore, setReadMore] = useState(false);
+    //declare a state to change button name
+    const [btnName, setBtnName] = useState('Read More');
+    //function
+    const handleBtn = () =>{
+        setReadMore(!readMore);
+        setBtnName('Read Less');
+    }
+    const blogContent =[
         {
-        "id" : 1,
-        "image": "https://images.unsplash.com/photo-1597933471507-1ca5765185d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
-        "title": "The Benefits of Online Learning",
-        "author": "John Smith",
-        "date": "2023-10-11",
-        "category": "Online Education",
-        "tags": ["e-learning", "digital learning", "online courses"],
-        "content": "Online learning offers numerous benefits that have made it an increasingly popular choice for students of all ages. One of the primary advantages is flexibility. Online courses allow individuals to access educational content at their own pace, fitting their studies around work, family, and other commitments. This flexibility extends to location as well, as learners can participate in online courses from anywhere in the world, removing geographical barriers to education. Online learning also often provides a wide range of course options, from traditional academic subjects to specialized and niche topics, allowing students to tailor their education to their specific interests and career goals. Furthermore, it promotes self-discipline, time management, and digital literacy skills, which are valuable in today's technology-driven world. Additionally, online learning can be more cost-effective, as it eliminates the need for commuting, accommodation, and physical textbooks. In summary, online learning empowers individuals with greater accessibility and control over their education, making it an invaluable option for many in the modern learning landscape. Online learning promotes inclusivity by accommodating a diverse range of learners. It offers a comfortable and supportive environment for those with physical disabilities, social anxiety, or other challenges that might make traditional in-person learning difficult. Additionally, it can be particularly helpful for adult learners who are seeking to upskill or change careers while juggling other responsibilities. With online learning, students have access to a wealth of resources and materials at their fingertips. This includes multimedia content, interactive simulations, and a wide array of digital tools that can enhance the learning experience. The ability to revisit and review materials at any time allows for a deeper understanding of the subject matter. The digital nature of online learning enables data-driven insights and analytics, which can help both students and instructors track progress and identify areas that may need improvement. This data-driven approach can lead to more personalized and effective learning experiences tailored to individual needs. In the context of a rapidly changing job market, online learning provides a platform for acquiring up-to-date skills and knowledge. It allows for continuous education and professional development, which can be crucial in staying competitive in various industries. Moreover, online learning encourages global collaboration and networking. Students can interact with peers and instructors from around the world, gaining diverse perspectives and forming valuable connections that can benefit them both academically and professionally. This multicultural exposure can foster a broader worldview and cultural understanding."
+            id: 1,
+            title: "Crafting an Outstanding Resume",
+            content: "Your resume is often the first impression you make on a potential employer. Learn how to create a standout resume that highlights your skills and experiences. We'll cover the essential elements, formatting tips, and examples to help you get noticed by recruiters. Your resume is the key to opening doors in your job search. This blog post will take you through each section of a resume, offering practical tips on how to showcase your skills, experiences, and achievements effectively. Learn about resume formats, keyword optimization, and ways to tailor your resume for different job applications."
         },
         {
-        "id" : 2,
-        "image":"https://plus.unsplash.com/premium_photo-1682124416359-d48d59ad6916?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-        "title": "The Importance of STEM Education for Children",
-        "author": "Emily Davis",
-        "date": "2023-10-12",
-        "category": "STEM Education",
-        "tags": ["science", "technology", "engineering", "math", "children"],
-        "content": "STEM (Science, Technology, Engineering, and Mathematics) education is crucial for children's development. In this blog post, we explore the significance of exposing young minds to STEM concepts and activities, fostering their problem-solving skills and preparing them for future opportunities. STEM education, which stands for Science, Technology, Engineering, and Mathematics, is a modern and comprehensive approach to learning that emphasizes the integration of these core subjects. This education system is designed to foster critical thinking, problem-solving, creativity, and innovation among students. STEM education encourages hands-on, inquiry-based learning, enabling students to apply scientific and mathematical principles to real-world situations. It also prepares them for a rapidly evolving job market, where skills in science and technology are in high demand. By engaging students in STEM subjects from an early age and promoting a multidisciplinary approach, STEM education aims to equip future generations with the knowledge and skills necessary to tackle complex global challenges and drive technological advancements."
+            id: 2,
+            title: "Navigating the Job Market : Strategies for Success",
+            content: "Discover effective strategies for navigating the competitive job market. From networking tips to leveraging online platforms, we'll guide you through the process of finding and applying for the right opportunities. Stay ahead of the curve and increase your chances of landing your dream job. In a competitive job market, knowing how to stand out is crucial. This blog post dives into the strategies that can help you navigate the job market successfully. From utilizing professional networks to leveraging job search platforms, you'll gain insights into effective job search techniques and the latest trends in recruitment."
         },
         {
-        "id" : 3,
-        "image":"https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80",
-        "title": "The Art of Effective Note-Taking",
-        "author": "Alexandra Johnson",
-        "date": "2023-10-13",
-        "category": "Study Tips",
-        "tags": ["note-taking", "study skills", "effective learning"],
-        "content": "Effective note-taking is a fundamental study skill that can significantly improve your learning outcomes. In this article, we share practical tips and techniques for taking better notes in class and during self-study, helping you retain information and excel in your education."
+            id: 3,
+            title: "Mastering the Art of Job Interviews",
+            content: "Preparing for a job interview is crucial to success. Explore common interview questions, best practices for answering them, and strategies to showcase your strengths. Whether it's a traditional in-person interview or a virtual meeting, we've got you covered with expert advice. Preparing for job interviews can be nerve-wracking, but proper preparation is the key to success. This post will guide you through common interview questions, providing thoughtful responses and strategies for handling challenging scenarios. Learn about body language, virtual interview etiquette, and ways to leave a lasting impression."
         },
         {
-        "id" : 4,
-        "image":"https://images.unsplash.com/photo-1515173792234-45cf00e907eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-        "title": "The History of Ancient Civilizations",
-        "author": "Michael Brown",
-        "date": "2023-10-14",
-        "category": "History",
-        "tags": ["ancient history", "civilizations", "archaeology"],
-        "content": "Delve into the rich history of ancient civilizations in this blog post. We journey back in time to explore the achievements, culture, and mysteries of civilizations like the Egyptians, Greeks, Romans, and more, shedding light on the remarkable legacies they left behind."
+            id: 4,
+            title: "Building a Strong Online Presence: Your Digital Brand",
+            content: "In today's digital age, your online presence matters. Learn how to build a professional and impactful digital brand. We'll discuss the importance of LinkedIn, personal websites, and social media in enhancing your visibility to employers and recruiters. In today's digital landscape, employers often research candidates online. This blog post explores the importance of cultivating a strong digital brand. Discover how to optimize your LinkedIn profile, create a personal website, and strategically use social media to enhance your professional image."
         },
         {
-        "id" : 5,
-        "image":"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-        "title": "The Role of Technology in Modern Education",
-        "author": "Sophia Adams",
-        "date": "2023-10-15",
-        "category": "EdTech",
-        "tags": ["technology in education", "digital learning", "e-learning"],
-        "content": "Technology has revolutionized modern education. This blog post delves into the ever-evolving landscape of educational technology, exploring how it's changing the way we learn and teaching methods, from virtual classrooms to AI-driven adaptive learning systems. In modern days, technology has become an integral part of our daily lives, profoundly shaping how we live, work, and interact with the world. From the ubiquitous smartphones we carry in our pockets to the advanced artificial intelligence that powers our digital assistants, technology has revolutionized nearly every aspect of our existence. The rapid advancement of technology has not only made information and communication more accessible but has also transformed industries such as healthcare, transportation, and education. The rise of the Internet of Things (IoT) has connected our devices and homes, while innovations like autonomous vehicles and renewable energy solutions are changing the way we think about sustainability and transportation. However, as technology continues to evolve at an unprecedented pace, it also raises ethical and privacy concerns, highlighting the need for responsible and ethical development to ensure that technology remains a force for progress and not unintended consequences. In the modern age, technology is both a powerful tool for innovation and a complex challenge that requires thoughtful management and consideration."
+            id: 5,
+            title: "Navigating Career Transitions: A Guide to Switching Industries",
+            content: "Thinking about changing careers? Understand the steps involved in making a successful career transition. We'll explore transferable skills, networking in a new industry, and ways to effectively communicate your value to potential employers. Considering a career change? This post will walk you through the steps involved in transitioning to a new industry. Learn how to identify transferable skills, connect with professionals in your desired field, and articulate your unique value to employers in a different sector."
         },
         {
-        "id" : 6,
-        "image":"https://images.unsplash.com/photo-1610500796385-3ffc1ae2f046?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80g",
-        "title": "The Benefits of Learning a Second Language",
-        "author": "Carlos Rodriguez",
-        "date": "2023-10-16",
-        "category": "Language Learning",
-        "tags": ["language acquisition", "bilingualism", "language skills"],
-        "content": "Learning a second language goes beyond communication; it enhances cognitive abilities and cultural awareness. This article highlights the numerous advantages of being bilingual or multilingual and provides tips on how to embark on your language learning journey."
+            id: 6,
+            title: "Wellness and Productivity: Balancing Work and Life",
+            content: "Maintaining a healthy work-life balance is essential for long-term career success. Discover tips for managing stress, staying productive, and achieving a harmonious balance between your professional and personal life. Maintaining a healthy work-life balance is essential for long-term career satisfaction. This blog post offers practical tips on managing stress, setting boundaries, and prioritizing self-care. Discover strategies for staying productive while preserving your well-being."
+        },
+        {
+            id: 7,
+            title: "Career Advancement: Strategies for Climbing the Corporate Ladder",
+            content: "Once you've secured a job, what's next? Explore strategies for career advancement, including skill development, effective communication in the workplace, and positioning yourself for promotions. Once you've landed a job, how can you position yourself for growth? This post delves into strategies for career advancement, including continuous learning, effective communication in the workplace, and building strong relationships with colleagues and supervisors." 
+        },
+        {
+            id: 8,
+            title: "Navigating Remote Work: Tips for Success",
+            content: "Remote work has become more prevalent than ever. Learn how to thrive in a remote work environment, from setting up a productive home office to staying connected with your team. Remote work has become a standard practice for many professionals. This post provides insights into successfully navigating a remote work environment. Explore tips for setting up a productive home office, maintaining communication with remote teams, and striking a balance between work and home life."
         }
-    
-    ];
+    ]
     return (
         <div className='min-h-screen'>
-            <h1>Blogs</h1>
+            <Helmet>
+                <title>Talent Canvas | Blogs</title>
+            </Helmet>
+            <h1 className="mx-auto text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl pt-10">Blogs</h1>
             <div className="min-h-screen">
-            <div className="px-4 py-4">
                 {
-                    // loop through the blogs data 
-                    blogs?.map(blog => <Blog key={blog.id} blog={blog}></Blog>)
+                    blogContent.map(item=>
+                        <div className="px-2 md:px-10 py-4">
+                            <h1 className='text-2xl px-2 font-bold text-gray-700'>{item.id}. {item.title}</h1>
+                            <p className='my-6 md:text-xl text-gray-500 px-4'>{item.content}</p>
+                            <hr />
+                        </div>
+                    )
                 }
+                <h1 className='text-2xl md:text-3xl lg:text-4xl text-blue-700 px-4 md:px-10 font-bold'>Stay Tuned for More Insights!</h1>
+                <p className='px-4 md:px-10 my-10 text-gray-600'>Our job hunting blog is your go-to resource for valuable insights, tips, and advice on navigating the ever-evolving job market. Check back regularly for the latest updates and empower yourself on your journey to professional success.</p>
             </div>
-        </div>
         </div>
     );
 };

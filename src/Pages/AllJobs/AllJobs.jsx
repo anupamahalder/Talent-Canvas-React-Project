@@ -1,6 +1,7 @@
 import { useState } from "react";
 import JobRow from "./JobRow";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const AllJobs = () => {
 
@@ -53,6 +54,9 @@ const AllJobs = () => {
     }
     return (
         <div className="min-h-screen">
+        <Helmet>
+            <title>Talent Canvas | All Jobs</title>
+        </Helmet>
         <div className="pt-10 px-10">
             {/* heading  */}
             <h1 className="mx-auto text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl">See All Jobs</h1>

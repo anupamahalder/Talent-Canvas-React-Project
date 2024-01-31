@@ -4,6 +4,7 @@ import JobCard from '../../Components/JobCard';
 import { usePDF } from 'react-to-pdf';
 import { FaDownload } from "react-icons/fa";
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 
 const AppliedJobs = () => {
@@ -93,6 +94,9 @@ const AppliedJobs = () => {
     }
     return (
         <div className="min-h-screen mx-auto">
+            <Helmet>
+                <title>Talent Canvas | Applied Job</title>
+            </Helmet>
             {
                 showAppliedJob?.length==0 ?
                 <div className="flex justify-center items-center w-full h-full">
