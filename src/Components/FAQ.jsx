@@ -2,7 +2,7 @@ import React from 'react';
 
 const FAQ = () => {
     return (
-        <div className='px-10 pb-16'>
+        <div className='p-10 pb-16'>
             <h1 className="my-10 drop-shadow-lg text-[#FF6348] text-center text-3xl md:text-4xl lg:text-5xl
                  font-bold">FAQ</h1>
             <div className="collapse collapse-arrow bg-base-200 mb-2">

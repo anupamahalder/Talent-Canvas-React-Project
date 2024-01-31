@@ -1,41 +1,58 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import useAuth from '../Hooks/useAuth';
+import emailjs from '@emailjs/browser';
+import Swal from 'sweetalert2';
 
 const ContactUs = () => {
-    const {user} = useAuth();
+    const {user, loginUser} = useAuth();
+    const form = useRef();
+
     // handle send email 
-    const handleSendBtn = (e)=>{
+    const sendEmail = (e)=>{
         e.preventDefault();
-        const name = e.target.name.value;
-        const email = e.target.email.value;
-        const message = e.target.message.value;
-        
+
+        emailjs.sendForm('service_lu1azeq', 'template_jzzzrsn', form.current, '9MT5PWD0Vk57sX2mm')
+        .then((result) => {
+            Swal.fire({
+                title: "Thank You!",
+                text: "We got your email successfully!",
+                icon: 'success'
+            })
+            // Clear the value of the message field
+            form.current.message.value = '';
+        }, (error) => {
+            Swal.fire({
+                title: "Sorry!",
+                text: "Failed to send the email!",
+                icon: 'error'
+            })
+        });
     }
     return (
-        <div className='mx-auto my-20'>
-            <section className="text-gray-600 body-font relative">
-            <div className="absolute inset-0 bg-gray-300">
-                <iframe width="100%" height="100%" title="map"
-                  loading="lazy"  // Add the loading attribute
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117925.33439927742!2d88.34735275!3d22.53542735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f882db4908f667%3A0x43e330e68f6c2cbc!2sKolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1700591780340!5m2!1sen!2sin"></iframe>
+        <div className='mx-auto'>
+            <section className="body-font md:flex md:justify-between md:items-center relative md:px-10">
+            <div className="flex-1 w-3/4 md:w-full mx-auto">
+                <img src="https://blush.design/api/download?shareUri=9N70qQtJZ-af2LTu&c=Hair_0%7E3164cf-0.2%7Efe5c4f_Skin_0%7E8c72cb-0.2%7Eef9e89&w=800&h=800&fm=png" alt="" />
             </div>
-            <div className="container px-5 py-24 mx-auto flex">
-                <div className="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
-                <h2 className="text-gray-900 text-2xl mb-4 font-bold title-font">Feel Free To Contact Us</h2>
+            <div className="container -mt-12 md:mt-0 px-5 md:py-12 mx-auto md:flex-1 flex drop-shadow-2xl">
+                <div className="bg-white rounded-lg p-8 flex flex-col md:ml-auto lg:w-4/5 mt-10 md:mt-0 relative z-10 shadow-md">
+                <h2 className="text-blue-800 text-2xl lg:text-3xl mb-4 font-bold title-font">Feel free to contact us...💙</h2>
                 <p className="leading-relaxed mb-5 text-gray-600">We welcome your feedback, suggestions, or queries anytime - your input is important to us!</p>
-                <form onSubmit={handleSendBtn}>
+                <form onSubmit={sendEmail} ref={form}>
                 <div className="relative mb-4">
-                    <label htmlFor="email" className="leading-7 text-sm text-gray-600">Name</label>
-                    <input type="text" placeholder='Enter your name' required name="name" className="w-full bg-white rounded border border-gray-300 focus:border-[#f87760] focus:ring-1 focus:ring-[#ff836d] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                    <label htmlFor="name" className="leading-7 text-sm text-gray-600">Name</label>
+                    <input type="text" placeholder='Enter your name' defaultValue={(user?.displayName) || (loginUser?.name)} required name="from_name" className="w-full bg-white rounded border border-gray-300 focus:border-[#f87760] focus:ring-1 focus:ring-[#ff836d] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
                 </div>
                 <div className="relative mb-4">
                     <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-                    <input type="email" id="email" defaultValue={user?.email} placeholder='Enter your email' required name="email" className="w-full bg-white rounded border border-gray-300 focus:border-[#f87760] focus:ring-1 focus:ring-[#ff836d] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                    <input type="email" id="email" defaultValue={user?.email} placeholder='Enter your email' required name="from_email" className="w-full bg-white rounded border border-gray-300 focus:border-[#f87760] focus:ring-1 focus:ring-[#ff836d] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
                 </div>
                 <div className="relative mb-4">
                     <label htmlFor="message" className="leading-7 text-sm text-gray-600">Message</label>
                     <textarea id="message" type="text" placeholder='Enter your message' name="message" className="w-full bg-white rounded border border-gray-300 focus:border-[#f87760] focus:ring-1 focus:ring-[#ff836d] h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
                 </div>
+                {/* Hidden input field for website_name */}
+                <input type="hidden" name="website_name" value="Talent Canvas" />
                 <div className='flex justify-center'>
                 <button className="text-white bg-[#FF6348] border-0 py-2 px-6 focus:outline-none hover:bg-[#c94e39] rounded text-lg uppercase font-bold">Send</button>
                 </div>

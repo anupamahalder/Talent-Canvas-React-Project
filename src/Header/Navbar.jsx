@@ -15,13 +15,11 @@ const Navbar = () => {
       
         img.onload = () => {
           // Image loaded successfully
-          console.log('Image is valid:', imageUrl);
           setNavImage(imageUrl);
         };
       
         img.onerror = () => {
           // Image failed to load
-          console.error('Invalid image URL:', imageUrl);
           setNavImage('https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg');
         };
         img.src = imageUrl;

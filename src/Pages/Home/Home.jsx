@@ -1,12 +1,12 @@
 import { useState } from "react";
 import JobTabs from "../../Components/JobTabs";
-import AboutUs from "./AboutUs";
 import './home.css';
-import ContactUs from "../../Components/ContactUs";
 import Testimonial from "../../Components/Testimonial";
 import StepsForApply from "../../Components/StepsForApply";
 import About from "../../Components/About";
 import FAQ from "../../Components/FAQ";
+import {Helmet} from "react-helmet";
+import ContactUs from "../../Components/ContactUs";
 
 const Home = () => {
     // declare a state for index
@@ -89,6 +89,8 @@ const Home = () => {
             <StepsForApply/>
             {/* about us  */}
             <About/>
+            {/* contact us  */}
+            <ContactUs/>
             {/* frequently asked question  */}
             <FAQ/>
         </div>
