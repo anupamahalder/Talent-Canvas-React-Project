@@ -25,7 +25,7 @@ const Login = () => {
         .then(result =>{
             console.log(result.user);
             // load user data from server after login 
-            const url = `http://localhost:5050/users?email=${email}`;
+            const url = `https://talent-canvas-server-side.vercel.app/users?email=${email}`;
             axios.get(url)
             .then(data =>{
                 console.log(data.data[0]);

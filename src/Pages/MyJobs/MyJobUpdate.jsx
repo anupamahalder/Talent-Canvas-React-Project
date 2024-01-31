@@ -11,7 +11,7 @@ const MyJobUpdate = () => {
   
     // load job data 
     useEffect(()=>{
-      fetch(`http://localhost:5050/job-detail/${id?.id}`)
+      fetch(`https://talent-canvas-server-side.vercel.app/job-detail/${id?.id}`)
       .then(res=>res.json())
       .then(data=>{
         setUpdateJob(data);
@@ -89,7 +89,7 @@ const MyJobUpdate = () => {
         const salaryRange = `$${lowestSalary}-$${highestSalary}`;
         // make an object to post data to the server 
         const jobDetails = {jobTitle,jobBannerImageUrl,jobCategory,category_key,salaryRange,jobDescription,applicationDeadline};
-        fetch(`http://localhost:5050/update-job/${_id}`,{
+        fetch(`https://talent-canvas-server-side.vercel.app/update-job/${_id}`,{
             method: 'PUT',
             headers:{
                 'content-type': 'application/json'
@@ -99,7 +99,7 @@ const MyJobUpdate = () => {
         .then(res=>res.json())
         .then(data=>{
             if(data.modifiedCount>0){
-                fetch(`http://localhost:5050/job-detail/${_id}`)
+                fetch(`https://talent-canvas-server-side.vercel.app/job-detail/${_id}`)
                 .then(res=>res.json())
                 .then(data =>{
                   const updateJobData = allJob.filter(item=>item.id != _id);

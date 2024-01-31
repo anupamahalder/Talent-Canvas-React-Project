@@ -76,7 +76,7 @@ const JobDetailDisplay = () => {
           if (isValidURL(formValues.resumeLink)) {
             const jobId = id;
             const applyJobData = {...formValues,jobId};
-            axios.post('http://localhost:5050/appliedjob',applyJobData)
+            axios.post('https://talent-canvas-server-side.vercel.app/appliedjob',applyJobData)
             .then(data=>{
                 if(data.data.insertedId){ 
                     Swal.fire({
@@ -85,7 +85,7 @@ const JobDetailDisplay = () => {
                         icon: 'success'
                     });
                     // increment applicant value by 1 to database 
-                    axios.post(`http://localhost:5050/update-job-increment/${id}`)
+                    axios.post(`https://talent-canvas-server-side.vercel.app/update-job-increment/${id}`)
                     .then(data=>{
                       console.log(data.data);
                       // update applicant number in the UI

@@ -51,7 +51,7 @@ const AuthProvider = ({children}) => {
     // load all job data 
     useEffect(() => {
         // Fetch all jobs only once
-        fetch('http://localhost:5050/alljobs')
+        fetch('https://talent-canvas-server-side.vercel.app/alljobs')
             .then(res => res.json())
             .then(data => {
                 setAllJob(data);

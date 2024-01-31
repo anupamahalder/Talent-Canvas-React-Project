@@ -53,7 +53,7 @@ const AddJobs = () => {
         // make an object to post data to the server 
         const jobDetails = {jobTitle,jobBannerImageUrl,loggedInUserName, userEmail,jobCategory,category_key,salaryRange,jobDescription,jobPostingDate,applicationDeadline,jobApplicantsNumber};
 
-        fetch('http://localhost:5050/alljobs',{
+        fetch('https://talent-canvas-server-side.vercel.app/alljobs',{
             method: 'POST',
             headers:{
                 'content-type': 'application/json'
@@ -65,7 +65,7 @@ const AddJobs = () => {
             if(data.insertedId){
               // load single data 
               const jobId = data.insertedId;
-              fetch(`http://localhost:5050/job-detail/${jobId}`)
+              fetch(`https://talent-canvas-server-side.vercel.app/job-detail/${jobId}`)
               .then(res=>res.json())
               .then(jobData=>{
                 setAllJob([...allJob, jobData]);

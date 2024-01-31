@@ -24,7 +24,7 @@ const MyJobCard = ({job, setMyJobData, myJobData}) => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-              fetch(`http://localhost:5050/delete-job/${_id}`,{
+              fetch(`https://talent-canvas-server-side.vercel.app/delete-job/${_id}`,{
                 method: 'DELETE'
               })
               .then(res=>res.json())
@@ -33,7 +33,7 @@ const MyJobCard = ({job, setMyJobData, myJobData}) => {
                     const updatedMyJobData = myJobData.filter(job =>job._id !== _id);
                     setMyJobData(updatedMyJobData);
                     // load alll jobs 
-                    fetch('http://localhost:5050/alljobs')
+                    fetch('https://talent-canvas-server-side.vercel.app/alljobs')
                     .then(res=>res.json())
                     .then(data=>{
                         setAllJob(data);

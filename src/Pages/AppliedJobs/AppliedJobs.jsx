@@ -20,7 +20,7 @@ const AppliedJobs = () => {
     // load applied job data 
     useEffect(() => {
         // Fetch applied job data
-        fetch(`http://localhost:5050/appliedjob?email=${user?.email}`)
+        fetch(`https://talent-canvas-server-side.vercel.app/appliedjob?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setAppliedJob(data);

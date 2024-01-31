@@ -51,7 +51,7 @@ const MyRoute = createBrowserRouter([
             {
                 path: '/jobdetais/:id1/:id2',
                 element: <PrivateRoute><JobDetail/></PrivateRoute>,
-                loader: ({params})=>fetch(`http://localhost:5050/jobs/${params.id1}/${params.id2}`)
+                loader: ({params})=>fetch(`https://talent-canvas-server-side.vercel.app/jobs/${params.id1}/${params.id2}`)
             },
             {
                 path: '/jobdetaildisplay/:id',

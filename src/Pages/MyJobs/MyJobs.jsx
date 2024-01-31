@@ -11,7 +11,7 @@ const MyJobs = () => {
     const [myJobData, setMyJobData] = useState([]);
     // load data by passing email as query params 
     useEffect(()=>{
-        axios.get(`http://localhost:5050/myjobs?userEmail=${user.email}`)
+        axios.get(`https://talent-canvas-server-side.vercel.app/myjobs?userEmail=${user.email}`)
         .then(data=>{
             // console.log(data.data);
             setMyJobData(data.data);

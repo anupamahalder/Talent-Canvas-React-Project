@@ -47,11 +47,11 @@ const Register = () => {
         createUser(email,password)
         .then(result =>{
             // post user data to database 
-            axios.post('http://localhost:5050/users-data', userData)
+            axios.post('https://talent-canvas-server-side.vercel.app/users-data', userData)
             .then(data => {
                 console.log(data.data);
                 // url to load data from server 
-                const url = `http://localhost:5050/users?email=${email}`;
+                const url = `https://talent-canvas-server-side.vercel.app/users?email=${email}`;
                 axios.get(url)
                 .then(data =>{
                     console.log(data.data[0]);
