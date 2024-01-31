@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Blog from './Blog';
 import { Helmet } from 'react-helmet';
 
 const Blogs = () => {
@@ -64,13 +63,13 @@ const Blogs = () => {
                     blogContent.map(item=>
                         <div className="px-2 md:px-10 py-4">
                             <h1 className='text-2xl px-2 font-bold text-gray-700'>{item.id}. {item.title}</h1>
-                            <p className='my-6 md:text-xl text-gray-500 px-4'>{item.content}</p>
+                            <p className='mt-6 mb-12 md:text-xl text-gray-500 px-4'>{item.content}</p>
                             <hr />
                         </div>
                     )
                 }
-                <h1 className='text-2xl md:text-3xl lg:text-4xl text-blue-700 px-4 md:px-10 font-bold'>Stay Tuned for More Insights!</h1>
-                <p className='px-4 md:px-10 my-10 text-gray-600'>Our job hunting blog is your go-to resource for valuable insights, tips, and advice on navigating the ever-evolving job market. Check back regularly for the latest updates and empower yourself on your journey to professional success.</p>
+                <h1 className='text-2xl mt-10 md:text-3xl lg:text-4xl text-blue-700 px-4 md:px-10 font-bold'>Stay Tuned for More Insights!</h1>
+                <p className='px-4 md:px-10 mt-10 mb-20 text-gray-600'>Our job hunting blog is your go-to resource for valuable insights, tips, and advice on navigating the ever-evolving job market. Check back regularly for the latest updates and empower yourself on your journey to professional success.</p>
             </div>
         </div>
     );

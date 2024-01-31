@@ -5,12 +5,16 @@ const ErrorPage = () => {
     return (
         <div className="min-h-screen flex justify-center items-center">
             <div className="">
-                <h1 className="text-[#FF6348] text-5xl text-center">404 Error <br />Page Not Found!</h1>
-                <div className="flex justify-center gap-2 mx-14">
+                <img src="https://img.freepik.com/free-vector/oops-404-error-with-broken-robot-concept-illustration_114360-1932.jpg?w=740&t=st=1706718644~exp=1706719244~hmac=6325c62303bc33162ab803c8273080f581e479ede82d598dd2aa77de948f2b8e" className="w-1/2 mx-auto" alt="" />
+                <div className="flex justify-around gap-2 mx-auto w-1/2">
+                <div>
                 <button onClick={()=>navigate(-1)}
-                className="flex-1 bg-[#a12e1a] py-2 text-white text-2xl font-bold rounded-md mx-auto px-3 my-10">Go Back</button>
+                className="bg-red-600 w-[115px] py-2 text-white text-xl md:text-2xl font-bold rounded-md mx-auto px-3 my-10">Go Back</button>
+                </div>
+                <div>
                 <Link to='/'><button
-                className="flex-1 bg-[#1b788f] py-2 text-white text-2xl font-bold rounded-md mx-auto px-3 my-10">Home</button></Link>
+                className="bg-blue-600 w-[110px] py-2 text-white text-xl md:text-2xl font-bold rounded-md mx-auto px-3 my-10">Home</button></Link>
+                </div>
                 </div>
             </div>
         </div>
