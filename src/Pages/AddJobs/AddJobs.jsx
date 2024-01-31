@@ -100,7 +100,7 @@ const AddJobs = () => {
           <Helmet>
               <title>Talent Canvas | Add Jobs</title>
           </Helmet>
-          <div className='bg-[#fbebe6] text-[#555555] w-[350px] md:w-[550px] p-4 shadow-2xl rounded-lg text-xl'>
+          <div className='bg-[#fbebe6] text-[#555555] w-[350px] md:w-[550px] p-4 shadow-2xl rounded-lg md:text-xl'>
             <h1 className="mx-auto text-center font-bold uppercase text-2xl md:text-3xl text-blue-800 drop-shadow-xl my-6">Add Your Job</h1>
                 <form onSubmit={hanldeAddJob} ref={formRef} >
                     {/* job title  */}
@@ -134,7 +134,7 @@ const AddJobs = () => {
                       className='outline outline-1 px-2 outline-slate-300 rounded-lg hover:outline-2 hover:outline-gray-800' type="date" placeholder='select date' name="applicationDeadline" 
                       min={new Date().toISOString().split('T')[0]}
                       id="customeDate" /> <br />
-                      <div className='flex justify-center my-10'>
+                      <div className='flex justify-center my-8 md:my-10'>
                       {
                         // type="reset"
                         <button onClick={handleResetForm} type='button'

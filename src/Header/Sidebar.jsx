@@ -55,11 +55,11 @@ const Sidebar = () => {
             }
           });
     }
-    const navStyle = "hover:bg-[#fc9971] p-2 rounded-lg";
+    const navStyle = "hover:bg-[#fc9971] hover:px-2 mb-3 text-xl font-medium block rounded-lg";
     return (
         <div className="drawer-side">
         <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label> 
-        <ul className="menu p-4 w-60 min-h-full bg-base-200">
+        <ul className="menu p-8 w-52 bg-base-200 min-h-full">
             {/* Sidebar content here */}
             <NavLink to='/' className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "text-red-600" : ""
@@ -91,14 +91,14 @@ const Sidebar = () => {
                 }
                 {
                     user?.email ? 
-                    <>
+                    <div className="flex justify-start gap-2 items-center">
                     <button onClick={handleSignout}
-                    className={navStyle}>SIGN OUT</button>
+                    className="hover:bg-[#fc9971] text-xl font-medium rounded-lg capitalize">Sign Out</button>
                     {
                         (user?.photoURL || loginUser?.imageUrl) && <img src={navImage}
-                         className="w-10 h-10 rounded-full" title={(user?.displayName) || (loginUser?.name)} alt="" />
+                         className="w-8 h-8 rounded-full" title={(user?.displayName) || (loginUser?.name)} alt="" />
                     }
-                    </>
+                    </div>
                     :<NavLink to='/login' className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "text-red-600" : ""}>
                     <span className={navStyle}>Login</span></NavLink>

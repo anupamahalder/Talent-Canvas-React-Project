@@ -100,7 +100,7 @@ const AppliedJobs = () => {
             {
                 showAppliedJob?.length==0 ?
                 <div className="flex justify-center items-center w-full h-full">
-                    <p className="text-center text-2xl font-bold my-auto shadow-lg">You Have Not Applied To Any Jobs!</p>
+                    <p className="text-center md:text-2xl font-bold my-auto shadow-lg">You Have Not Applied To Any Jobs!</p>
                 </div>
                 : 
                 <div className='mx-auto'  ref={targetRef}>

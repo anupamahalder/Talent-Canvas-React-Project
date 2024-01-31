@@ -72,7 +72,7 @@ const Home = () => {
                         {/* search  */}
                         <div className="md:flex gap-2 px-2 mx-auto justify-center items-center w-full">
                             <form onSubmit={hanldeSearch} className="mx-auto">
-                                <input className="py-2 lg:py-3 px-1 md:px-2 mr-2 rounded-md "
+                                <input className="py-2 lg:py-3 px-1 md:px-2 ml-2 md:ml-0 mr-2 rounded-md "
                                 type="text" name="search" placeholder="Search your job category..."/>
                                 <button className="rounded-md outline-offset-1 bg-[#e64f34] py-2 lg:py-3 px-3 lg:px-8 uppercase font-semibold text-white hover:bg-[#b64632]">Search</button>
                             </form>
