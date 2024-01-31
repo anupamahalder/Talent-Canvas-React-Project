@@ -6,6 +6,7 @@ import ContactUs from "../../Components/ContactUs";
 import Testimonial from "../../Components/Testimonial";
 import StepsForApply from "../../Components/StepsForApply";
 import About from "../../Components/About";
+import FAQ from "../../Components/FAQ";
 
 const Home = () => {
     // declare a state for index
@@ -87,7 +88,9 @@ const Home = () => {
             {/* easy apply for jobs  */}
             <StepsForApply/>
             {/* about us  */}
-            <About></About>
+            <About/>
+            {/* frequently asked question  */}
+            <FAQ/>
         </div>
     );
 };

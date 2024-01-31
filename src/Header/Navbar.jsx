@@ -1,10 +1,31 @@
 import { NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const Navbar = () => {
     // destructure context api 
     const {user, logOut, loginUser} = useAuth();
+    // declare a state to store user image 
+    const [navImage, setNavImage] = useState("https://blush.design/api/download?shareUri=io9vDIdwZEjiNCae&c=Hair_0%7Ed5e1d5-0.2%7Eff0048_Rainbow_0%7E008bf7-0.2%7E7ffc51_Skin_0%7Eb02d1c-0.2%7Efeb1cd&w=800&h=800&fm=png");
+
+    if(!(user?.photoURL) || !(loginUser?.imageUrl)){
+        const imageUrl = (user?.photoURL) || (loginUser?.imageUrl);
+        const img = new Image();
+      
+        img.onload = () => {
+          // Image loaded successfully
+          console.log('Image is valid:', imageUrl);
+          setNavImage(imageUrl);
+        };
+      
+        img.onerror = () => {
+          // Image failed to load
+          console.error('Invalid image URL:', imageUrl);
+          setNavImage('https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg');
+        };
+        img.src = imageUrl;
+    }
     // create a function to handle sign out 
     const handleSignout = () =>{
         Swal.fire({
@@ -88,7 +109,7 @@ const Navbar = () => {
                     <button onClick={handleSignout}
                     className={navStyle}>SIGN OUT</button>
                     {
-                        (user?.photoURL || loginUser?.imageUrl) && <img src={(user?.photoURL) || (loginUser?.imageUrl)}
+                        (user?.photoURL || loginUser?.imageUrl) && <img src={navImage}
                          className="w-10 h-10 rounded-full" title={(user?.displayName) || (loginUser?.name)} alt="" />
                     }
                     </>

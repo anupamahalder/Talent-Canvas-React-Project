@@ -65,49 +65,49 @@ const AppliedJobs = () => {
     // handle pdf download 
     const handlePDFDownload = ()=>{
         // Show loading alert
-    Swal.fire({
+        Swal.fire({
         title: 'Loading PDF',
         html: 'Please wait...',
         allowOutsideClick: false,
         didOpen: () => {
-          Swal.showLoading();
-          
-          // Simulate PDF loading time (replace this with your actual PDF loading logic)
-          setTimeout(() => {
+            Swal.showLoading();
+            
+            // Simulate PDF loading time (replace this with your actual PDF loading logic)
+            setTimeout(() => {
             // Close the loading alert
             Swal.close();
             
             // Trigger your PDF download logic here (replace this with your actual logic)
             toPDF();
-  
+
             // Show success alert (or handle the success scenario as needed)
             Swal.fire({
-              icon: 'success',
-              title: 'PDF Downloaded Successfully!',
-              showConfirmButton: false,
-              timer: 1000,
+                icon: 'success',
+                title: 'PDF Downloaded Successfully!',
+                showConfirmButton: false,
+                timer: 1000,
             });
-          }, 1500); // Adjust the time as needed
+            }, 1000); // Adjust the time as needed
         },
-      });
+        });
     }
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen mx-auto">
             {
                 showAppliedJob?.length==0 ?
                 <div className="flex justify-center items-center w-full h-full">
                     <p className="text-center text-2xl font-bold my-auto shadow-lg">You Have Not Applied To Any Jobs!</p>
                 </div>
                 : 
-                <div className=''  ref={targetRef}>
+                <div className='mx-auto'  ref={targetRef}>
                     <h1 className="mx-auto text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl pt-10">Applied Jobs</h1>
                     {/* sort by job category  */}
                     <div className='mb-12 mt-4 flex flex-col-reverse md:flex-row gap-2 md:gap-0 md:flex md:justify-between px-8 md:px-16 items-center'>
-                        <div className='flex justify-center items-center gap-2 text-pink-700 underline md:no-underline md:bg-pink-700 md:text-white p-2 rounded-lg md:font-bold font-sm drop-shadow-lg w-[150px]'>
+                        <div className='flex justify-center items-center gap-2 text-pink-700 underline md:no-underline md:bg-pink-700 md:text-white px-2 py-1 rounded-lg md:font-bold font-sm drop-shadow-lg w-[150px]'>
                         <FaDownload className='inline-block'/>
                         <button onClick={handlePDFDownload}>Download PDF</button>
                         </div>
-                        <div>
+                        <div className='md:flex-1 mx-auto text-center md:text-right  w-full'>
                         <span className='text-green-700 font-bold uppercase'>Sort By Job Category: </span>
                         <select name="jobSelectCategory"
                          onChange={handleJobCategory}
