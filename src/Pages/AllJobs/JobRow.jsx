@@ -9,7 +9,7 @@ const JobRow = ({job}) => {
         console.log('Button Clicked of id',_id);
     }
     return (
-        <tr  className="bg-white odd:bg-gray-50">
+        <tr  className="bg-white odd:bg-gray-50 overflow-x-scroll">
             <td className='capitalize'>{loggedInUserName}</td>
             <td>{jobTitle}</td>
             <td>{jobPostingDate}</td>

@@ -3,6 +3,7 @@ import useAuth from '../../Hooks/useAuth';
 import JobCard from '../../Components/JobCard';
 import { usePDF } from 'react-to-pdf';
 import { FaDownload } from "react-icons/fa";
+import Swal from 'sweetalert2';
 
 
 const AppliedJobs = () => {
@@ -61,6 +62,35 @@ const AppliedJobs = () => {
         console.log(sortedJobs);
         setSelectedJobCategory(sortedJobs);
     }
+    // handle pdf download 
+    const handlePDFDownload = ()=>{
+        // Show loading alert
+    Swal.fire({
+        title: 'Loading PDF',
+        html: 'Please wait...',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+          
+          // Simulate PDF loading time (replace this with your actual PDF loading logic)
+          setTimeout(() => {
+            // Close the loading alert
+            Swal.close();
+            
+            // Trigger your PDF download logic here (replace this with your actual logic)
+            toPDF();
+  
+            // Show success alert (or handle the success scenario as needed)
+            Swal.fire({
+              icon: 'success',
+              title: 'PDF Downloaded Successfully!',
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          }, 1500); // Adjust the time as needed
+        },
+      });
+    }
     return (
         <div className="min-h-screen">
             {
@@ -72,10 +102,10 @@ const AppliedJobs = () => {
                 <div className=''  ref={targetRef}>
                     <h1 className="mx-auto text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl pt-10">Applied Jobs</h1>
                     {/* sort by job category  */}
-                    <div className='mb-12 mt-4 md:flex md:justify-between px-8 md:px-16 items-center'>
-                        <div className='flex justify-center items-center gap-2 bg-pink-700 text-white p-2 rounded-lg font-bold'>
-                        <FaDownload/>
-                        <button onClick={() => toPDF()}>Download PDF</button>
+                    <div className='mb-12 mt-4 flex flex-col-reverse md:flex-row gap-2 md:gap-0 md:flex md:justify-between px-8 md:px-16 items-center'>
+                        <div className='flex justify-center items-center gap-2 text-pink-700 underline md:no-underline md:bg-pink-700 md:text-white p-2 rounded-lg md:font-bold font-sm drop-shadow-lg w-[150px]'>
+                        <FaDownload className='inline-block'/>
+                        <button onClick={handlePDFDownload}>Download PDF</button>
                         </div>
                         <div>
                         <span className='text-green-700 font-bold uppercase'>Sort By Job Category: </span>
