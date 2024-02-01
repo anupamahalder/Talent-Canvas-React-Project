@@ -103,8 +103,8 @@ const JobDetailDisplay = () => {
                       applier_email: user?.email,
                       job_holder_email: job?.userEmail || "anupamahalder2020@gmail.com"
                     }
-                    console.log(mailData);
-                    emailjs.send('service_evzvpfc', 'template_55gqpur', mailData)
+                    console.log(mailData)
+                    emailjs.send('service_evzvpfc', 'template_55gqpur', mailData,'9MT5PWD0Vk57sX2mm')
                         .then(function(response) {
                           Swal.fire({
                             title: 'Email has sent to you',
