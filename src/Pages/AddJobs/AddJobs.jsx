@@ -100,7 +100,7 @@ const AddJobs = () => {
           <Helmet>
               <title>Talent Canvas | Add Jobs</title>
           </Helmet>
-          <div className='bg-[#fbebe6] text-[#555555] w-[350px] md:w-[500px] p-4 shadow-2xl rounded-lg md:text-xl'>
+          <div className='bg-[#fbebe6] text-[#555555] w-[330px] md:w-[500px] p-4 shadow-2xl rounded-lg md:text-xl'>
             <h1 className="mx-auto text-center font-bold uppercase text-2xl md:text-3xl text-blue-800 drop-shadow-xl my-6">Add Your Job</h1>
                 <form onSubmit={hanldeAddJob} ref={formRef} >
                     {/* job title  */}
@@ -113,12 +113,12 @@ const AddJobs = () => {
                     <span className='uppercase md:pl-4 font-semibold text-gray-700'>Choose Job Category: </span>
 
                     <select name="jobCategory" className='bg-white py-1 w-1/3 ml-2 pl-2 outline mt-2 outline-1 outline-slate-300 rounded-lg hover:outline-2 hover:outline-gray-800' id="jobCategory">
-                    <option value="fulltime" fullname="Full Time Job" defaultChecked>Full Time Job</option>
-                    <option value="parttime" fullname="Part Time Job">Part Time Job</option>
-                    <option value="remote" fullname="Remote Job">Remote Job</option>
-                    <option value="hybrid" fullname="Hybrid Job">Hybrid Job</option>
-                    <option value="onsite" fullname="On Site Job">On Site Job</option>
-                    <option value="intern" fullname="Intern Job">Intern Job</option>
+                    <option value="fulltime" fullname="Full Time Job" defaultChecked>Full Time</option>
+                    <option value="parttime" fullname="Part Time Job">Part Time</option>
+                    <option value="remote" fullname="Remote Job">Remote</option>
+                    <option value="hybrid" fullname="Hybrid Job">Hybrid</option>
+                    <option value="onsite" fullname="On Site Job">On Site</option>
+                    <option value="intern" fullname="Intern Job">Intern</option>
                     </select> <br /><br />
 
                     {/* salary range  */}
@@ -140,7 +140,7 @@ const AddJobs = () => {
                         <button onClick={handleResetForm} type='button'
                           className='btn mr-2 md:text-xl bg-gray-500 text-white hover:bg-white hover:text-gray-800'>Reset Form</button>
                       }
-                      <input type="submit" className='btn md:text-2xl bg-[#FF6348] text-gray-700 hover:text-white hover:bg-red-700' value="Submit Job" />
+                      <input type="submit" className='btn md:text-xl bg-[#FF6348] text-gray-700 hover:text-white hover:bg-red-700' value="Submit Job" />
                       </div>
                 </form>
             </div>

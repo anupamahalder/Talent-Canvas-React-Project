@@ -117,18 +117,18 @@ const MyJobUpdate = () => {
     }
     
     return (
-        <div className='min-h-screen py-20 px-10 flex justify-center mb-20'>
-                <div className='bg-[#fbebe6] text-[#555555] w-[550px] p-4 shadow-2xl rounded-lg text-xl'>
+        <div className='min-h-screen py-20 md:px-10 flex justify-center mb-20'>
+                <div className='bg-[#fbebe6] text-[#555555] w-[330px] md:w-[500px] p-4 shadow-2xl rounded-lg md:text-xl'>
                 <h1 className="mx-auto text-center font-bold uppercase text-3xl text-blue-800 drop-shadow-xl my-6">Update Your Job</h1>
                     <form onSubmit={hanldeAddJob} ref={formRef} >
                         {/* job title  */}
-                        <span className='uppercase pl-4 font-semibold text-gray-700 mr-3'>Job Title:</span>
+                        <span className='uppercase md:pl-4 font-semibold text-gray-700 mr-3'>Job Title:</span>
                         <input required className='outline pl-2 outline-1 mt-2 hover:outline-2 outline-slate-300 hover:outline-gray-800 rounded-md w-3/5' defaultValue={jobTitle} type="text" name="jobTitle" id="" /> <br /><br />
                         {/* picture url  */}
-                        <span className='uppercase pl-4 font-semibold text-gray-700'>Picture URL of the Job Banner: </span>
+                        <span className='uppercase md:pl-4 font-semibold text-gray-700'>Picture URL of the Job Banner: </span>
                         <input onBlur={handleImageUrl} defaultValue={jobBannerImageUrl} required className='ml-6 pl-2 outline mt-2 outline-1 outline-slate-300 rounded-lg w-4/5 hover:outline-2 hover:outline-gray-800' type="text" name="bannerUrl" id="" /><br /><br />
                         {/* select job category  */}
-                        <span className='uppercase pl-4 font-semibold text-gray-700'>Choose Job Category: </span>
+                        <span className='uppercase md:pl-4 font-semibold text-gray-700'>Choose Job Category: </span>
                         {/* select job category  */}
                         <select
                           name="jobCategory"
@@ -148,26 +148,26 @@ const MyJobUpdate = () => {
                         </select><br /><br />
 
                         {/* salary range  */}
-                        <span className='uppercase pl-4 font-semibold text-gray-700'>Salary Range:</span><br />
-                        <input required defaultValue={lowestSalary} type="number" className='mt-2 w-40 px-2 mr-10 ml-6 outline outline-1 outline-slate-300 rounded-lg hover:outline-2 hover:outline-gray-800' name='lowestSalary' placeholder='lowest salary' />
+                        <span className='uppercase md:pl-4 font-semibold text-gray-700'>Salary Range:</span><br />
+                        <input required defaultValue={lowestSalary} type="number" className='mt-2 w-40 px-2 md:mr-10 md:ml-6 outline outline-1 outline-slate-300 rounded-lg hover:outline-2 hover:outline-gray-800' name='lowestSalary' placeholder='lowest salary' />
                         <input required defaultValue={highestSalary} type="number" className='mt-2 w-40 px-2 outline outline-1 outline-slate-300 rounded-lg hover:outline-2 hover:outline-gray-800' name='highestSalary' placeholder='highest salary' /> <br /><br />
                         {/* job description  */}
-                        <span className='uppercase pl-4 font-semibold text-gray-700'>Job Description:</span><br />
+                        <span className='uppercase md:pl-4 font-semibold text-gray-700'>Job Description:</span><br />
                         <textarea required defaultValue={jobDescription}
                         name="jobDescription" className='outline outline-1 pl-2 outline-slate-300 rounded-lg mt-2 w-5/6 mx-6 hover:outline-2 hover:outline-gray-800' id="" cols="10" rows="5"></textarea><br /><br />
                         {/* date input  */}
-                        <span className='uppercase pl-4 font-semibold text-gray-700'>Application Deadline:  </span>
+                        <span className='uppercase md:pl-4 font-semibold text-gray-700'>Application Deadline:  </span>
                         <input required defaultValue={applicationDeadline}
                          className='outline outline-1 px-2 outline-slate-300 rounded-lg hover:outline-2 hover:outline-gray-800' type="date" placeholder='select date' name="applicationDeadline" 
                          min={new Date().toISOString().split('T')[0]}
                          id="customeDate" /> <br />
-                         <div className='flex justify-center my-10'>
+                         <div className='flex justify-center my-8 md:my-10'>
                           {
                             // type="reset"
                             <button onClick={()=>navigate(-1)} type='button'
-                             className='btn mr-2 text-xl bg-gray-500 text-white hover:bg-white hover:text-gray-800'>Go Back</button>
+                             className='btn mr-2 md:text-xl bg-gray-500 text-white hover:bg-white hover:text-gray-800'>Go Back</button>
                           }
-                         <input type="submit" className='btn text-2xl bg-[#FF6348] text-gray-700 hover:text-white hover:bg-red-700' value="Update Job" />
+                         <input type="submit" className='btn md:text-xl bg-[#FF6348] text-gray-700 hover:text-white hover:bg-red-700' value="Update Job" />
                          </div>
                     </form>
                 </div>

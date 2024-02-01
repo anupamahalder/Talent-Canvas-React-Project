@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
@@ -20,7 +20,26 @@ const JobDetailDisplay = () => {
     const [applicantNo, setApplicantNo] = useState(jobApplicantsNumber);
     const [isApplied, setIsApplied] = useState(job?.isApply);
 
+    const location = useLocation();
     const navigate = useNavigate();
+    // Get the previous path from the state or set it to '/'
+    const previousPath = location.state?.from || '/';
+
+    // Check if the previous path is login or register
+    const isPreviousLoginOrRegister =
+      previousPath === '/login' || previousPath === '/register';
+    console.log(previousPath, isPreviousLoginOrRegister);
+
+    // Function to handle the arrow icon click
+    const handleGoBack = () => {
+      if (previousPath=='/') {
+        // If previous path is login or register, go to the home page
+        navigate(-1);
+      } else {
+        // If previous path is neither login nor register, go back one step
+        navigate(-2);
+      }
+    };
 
     // handle apply button
     const handleApplyBtn = async () => {
@@ -141,17 +160,16 @@ const JobDetailDisplay = () => {
         const pattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}(\/\S*)?$/;
         return pattern.test(url);
     };
-      
     return (
         <div className="relative mx-10 min-h-screen">
-            <h1 className="mx-auto mt-10 mb-8 text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl">Details of the Job</h1>
+            <h1 className="mx-auto mt-10 mb-8 text-center font-bold uppercase text-xl md:text-2xl text-blue-800 drop-shadow-2xl">Details of the Job</h1>
             {/* arrow  */}
-            <FaArrowLeftLong onClick={()=>navigate(-1)} className="text-2xl md:text-3xl text-gray-500 absolute top-5 md:top-10 md:left-4 cursor-pointer"/>
+            <FaArrowLeftLong onClick={handleGoBack} className="text-xl md:text-3xl text-gray-500 absolute top-5 md:top-10 md:left-4 cursor-pointer"/>
         {/* job card  */}
         <div className="md:flex justify-between rounded-lg md:gap-10 md:bg-gray-50 mb-20">
             {/* image  */}
-            <div className="md:flex-1 flex justify-center items-center rounded-tl-lg rounded-bl-lg md:bg-gray-100 py-10">
-                <img src={jobBannerImageUrl} className="w-[500px] h-[300px] rounded-xl" alt="Job image" />
+            <div className="md:flex-1 flex justify-center items-center rounded-tl-lg rounded-bl-lg md:bg-gray-100 md:py-10">
+                <img src={jobBannerImageUrl} className="w-[350px] md:w-[500px] h-[300px] rounded-xl" alt="Job image" />
             </div>
             {/* content  */}
             <div className="md:flex-1 px-2 md:py-10">
