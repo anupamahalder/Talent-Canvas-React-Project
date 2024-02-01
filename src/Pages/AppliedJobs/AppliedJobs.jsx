@@ -11,12 +11,11 @@ const AppliedJobs = () => {
     // declare a state for storing applied data
     const [appliedJob, setAppliedJob] = useState([]);
     const [showAppliedJob, setShowAppliedJob] = useState([]);
-    const [selectedJobCategory, setSelectedJobCategory] = useState('alljobs');
+    const [selectedJobCategory, setSelectedJobCategory] = useState(showAppliedJob);
     const { toPDF, targetRef } = usePDF({filename: 'appliedJob.pdf'});
 
     // destructure auth context 
     const {allJob, setAllJob, user} = useAuth();
-
     // load applied job data 
     useEffect(() => {
         // Fetch applied job data
@@ -59,7 +58,6 @@ const AppliedJobs = () => {
         // sort the data 
         const sortedJobs = showAppliedJob.filter(item=>item.category_key == selectedCategory);
         // update the showAppliedJob
-        console.log(sortedJobs);
         setSelectedJobCategory(sortedJobs);
     }
     // handle pdf download 
