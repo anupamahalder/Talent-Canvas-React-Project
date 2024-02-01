@@ -56,7 +56,6 @@ const AppliedJobs = () => {
             setSelectedJobCategory(showAppliedJob);
             return;
         }
-        setSelectedJobCategory(showAppliedJob);
         // sort the data 
         const sortedJobs = showAppliedJob.filter(item=>item.category_key == selectedCategory);
         // update the showAppliedJob
@@ -114,7 +113,7 @@ const AppliedJobs = () => {
                         <div className='md:flex-1 mx-auto text-center md:text-right  w-full'>
                         <span className='text-green-700 font-bold uppercase'>Sort By Job Category: </span>
                         <select name="jobSelectCategory"
-                         defaultValue={selectedJobCategory}
+                         defaultValue='alljobs'
                          onChange={handleJobCategory}
                          className='rounded-sm font-medium ml-2 bg-pink-100 drop-shadow-lg py-1 px-3' id="">
                             <option value="alljobs">All Jobs</option>
