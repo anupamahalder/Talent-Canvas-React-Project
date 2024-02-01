@@ -12,13 +12,13 @@ const JobTabs = ({index}) => {
       setTabIndex(index);
     },[index]);
 
-    const tabStyle = "text-sm md:text-xl hover:bg-blue-100 p-1 md:p-2 hover:rounded-md font-semibold text-blue-900 uppercase";
+    const tabStyle = "text-sm md:text-lg hover:bg-blue-100 p-1 md:p-2 hover:rounded-md font-semibold text-blue-900 uppercase";
     return (
-        <div className="mb-16 mx-auto w-15/16 min-h-screen">
+        <div className="mb-16 mx-auto md:w-15/16 min-h-screen">
             <Tabs
         selectedIndex={tabIndex}
         onSelect={tabIndex => setTabIndex(tabIndex)}>
-        <div className="mx-5 md:mx-10">
+        <div className="mx-5 md:mx-8">
         <TabList>
           <Tab><span className={tabStyle}>All Jobs</span></Tab>
           <Tab><span className={tabStyle}>Full Time Jobs</span></Tab>
