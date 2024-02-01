@@ -134,7 +134,7 @@ const AppliedJobs = () => {
                         </div>
                         : 
                         <div className='flex justify-center items-center'>
-                            <p className="text-center text-2xl font-bold my-auto shadow-lg">No jobs found in this category!</p>
+                            <p className="text-center md:text-2xl font-bold my-auto shadow-lg">No jobs found in this category!</p>
                         </div>
                         
                     }
