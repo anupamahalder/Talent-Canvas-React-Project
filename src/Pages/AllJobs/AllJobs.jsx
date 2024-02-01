@@ -8,6 +8,7 @@ const AllJobs = () => {
     const {allJob} = useAuth();
     // declare a state to store jobs data 
     const [jobs, setJobs] = useState(allJob);
+    const [allJobs, setAllJobs] = useState(allJob);
 
     // handle recent post button 
     const handleRecentPost=()=>{
@@ -49,7 +50,7 @@ const AllJobs = () => {
             return;
         }
         console.log(search);
-        const filteredJobs = jobs.filter(job =>job.jobTitle.toLowerCase().includes(search.toLowerCase()));
+        const filteredJobs = allJobs.filter(job =>job.jobTitle.toLowerCase().includes(search.toLowerCase()));
         setJobs(filteredJobs);
     }
     return (
