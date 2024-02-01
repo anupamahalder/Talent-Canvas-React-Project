@@ -107,16 +107,17 @@ const AppliedJobs = () => {
                     <h1 className="mx-auto text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl pt-10">Applied Jobs</h1>
                     {/* sort by job category  */}
                     <div className='mb-12 mt-4 md:flex-row gap-2 md:gap-0 md:flex md:justify-between px-8 md:px-16 items-center'>
-                        <div className='flex justify-center items-center gap-2 text-pink-700 underline md:no-underline md:bg-pink-700 md:text-white px-2 py-1 rounded-lg md:font-bold font-sm drop-shadow-lg w-[150px]'>
+                        <div className='flex mx-auto justify-center items-center gap-2 text-pink-700 underline md:no-underline md:bg-pink-700 md:text-white px-2 py-1 rounded-lg md:font-bold font-sm drop-shadow-lg w-[150px]'>
                             <FaDownload className='inline-block'/>
-                        <button onClick={handlePDFDownload}>Download PDF</button>
+                            <button onClick={handlePDFDownload}>Download PDF</button>
                         </div>
                         <div className='md:flex-1 mx-auto text-center md:text-right  w-full'>
                         <span className='text-green-700 font-bold uppercase'>Sort By Job Category: </span>
                         <select name="jobSelectCategory"
+                         defaultValue={selectedJobCategory}
                          onChange={handleJobCategory}
                          className='rounded-sm font-medium ml-2 bg-pink-100 drop-shadow-lg py-1 px-3' id="">
-                            <option value="alljobs" selected>All Jobs</option>
+                            <option value="alljobs">All Jobs</option>
                             <option value="fulltime">Full Time</option>
                             <option value="parttime">Part Time</option>
                             <option value="remote">Remote</option>

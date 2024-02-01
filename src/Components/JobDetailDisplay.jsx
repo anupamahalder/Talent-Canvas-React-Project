@@ -107,7 +107,7 @@ const JobDetailDisplay = () => {
                     emailjs.send('service_evzvpfc', 'template_55gqpur', mailData,'9MT5PWD0Vk57sX2mm')
                         .then(function(response) {
                           Swal.fire({
-                            title: 'Email has sent to you',
+                            title: 'Confirmation email has sent to you',
                             icon: 'success'
                           })
                            console.log('SUCCESS!', response.status, response.text);
