@@ -100,7 +100,7 @@ const AddJobs = () => {
           <Helmet>
               <title>Talent Canvas | Add Jobs</title>
           </Helmet>
-          <div className='bg-[#fbebe6] text-[#555555] w-[350px] md:w-[550px] p-4 shadow-2xl rounded-lg md:text-xl'>
+          <div className='bg-[#fbebe6] text-[#555555] w-[350px] md:w-[500px] p-4 shadow-2xl rounded-lg md:text-xl'>
             <h1 className="mx-auto text-center font-bold uppercase text-2xl md:text-3xl text-blue-800 drop-shadow-xl my-6">Add Your Job</h1>
                 <form onSubmit={hanldeAddJob} ref={formRef} >
                     {/* job title  */}

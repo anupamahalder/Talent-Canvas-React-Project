@@ -11,7 +11,7 @@ const AppliedJobs = () => {
     // declare a state for storing applied data
     const [appliedJob, setAppliedJob] = useState([]);
     const [showAppliedJob, setShowAppliedJob] = useState([]);
-    const [selectedJobCategory, setSelectedJobCategory] = useState(showAppliedJob);
+    const [selectedJobCategory, setSelectedJobCategory] = useState([]);
     const { toPDF, targetRef } = usePDF({filename: 'appliedJob.pdf'});
 
     // destructure auth context 
@@ -43,14 +43,14 @@ const AppliedJobs = () => {
         // Update showAppliedJob
         const appliedDataOnly = updatedAllJob.filter(job => job?.isApply === true);
         setShowAppliedJob(appliedDataOnly);
-        setSelectedJobCategory(showAppliedJob);
+        setSelectedJobCategory(appliedDataOnly);
     }, [appliedJob]);
 
     // handle select category 
     const handleJobCategory = e =>{
         // get the job category which is selected 
         const selectedCategory = e.target.value;
-
+        console.log(selectedCategory);
         if(selectedCategory=='alljobs'){
             setSelectedJobCategory(showAppliedJob);
             return;
@@ -59,6 +59,7 @@ const AppliedJobs = () => {
         const sortedJobs = showAppliedJob.filter(item=>item.category_key == selectedCategory);
         // update the showAppliedJob
         setSelectedJobCategory(sortedJobs);
+        console.log(selectedJobCategory);
     }
     // handle pdf download 
     const handlePDFDownload = ()=>{
@@ -90,21 +91,21 @@ const AppliedJobs = () => {
         });
     }
     return (
-        <div className="min-h-screen mx-auto">
+        <div className="min-h-screen w-full mx-auto">
             <Helmet>
                 <title>Talent Canvas | Applied Job</title>
             </Helmet>
             {
-                showAppliedJob?.length==0 ?
+                appliedJob?.length==0 ?
                 <div className="flex justify-center items-center w-full h-full">
                     <p className="text-center md:text-2xl font-bold my-auto shadow-lg">You Have Not Applied To Any Jobs!</p>
                 </div>
                 : 
-                <div className='mx-auto'  ref={targetRef}>
+                <div className='mx-auto w-full'  ref={targetRef}>
                     <h1 className="mx-auto text-center font-bold uppercase text-2xl text-blue-800 drop-shadow-xl pt-10">Applied Jobs</h1>
                     {/* sort by job category  */}
-                    <div className='mb-12 mt-4 md:flex-row gap-2 md:gap-0 md:flex md:justify-between px-8 md:px-16 items-center'>
-                        <div className='flex mx-auto justify-center items-center gap-2 text-pink-700 underline md:no-underline md:bg-pink-700 md:text-white px-2 py-1 rounded-lg md:font-bold font-sm drop-shadow-lg w-[150px]'>
+                    <div className='mb-12 mt-4 md:flex flex-col-reverse md:flex-row gap-2 md:gap-0 md:justify-between px-8 md:px-16 items-center w-full'>
+                        <div className='flex mx-auto justify-center md:justify-start items-center gap-2 text-pink-700 underline md:no-underline md:bg-pink-700 md:text-white px-2 py-1 rounded-lg md:font-bold font-sm drop-shadow-lg w-[150px]'>
                             <FaDownload className='inline-block'/>
                             <button onClick={handlePDFDownload}>Download PDF</button>
                         </div>
@@ -125,18 +126,17 @@ const AppliedJobs = () => {
                         </div>
                     </div>
                     {
-                        selectedJobCategory.length==0 ? 
-                        <div className='h-screen'>
-                            <div className='flex justify-center items-center mx-auto w-full h-3/5'>
-                            <p className="text-center text-2xl font-bold my-auto shadow-lg">No jobs found in this category!</p>
-                        </div>
-                        </div>
-                        :
+                        selectedJobCategory?.length!=0 ?
                         <div className="px-10 mx-auto grid grid-cols-1 pb-20 md:grid-cols-2 gap-10 lg:grid-cols-3" >
                         {
                             selectedJobCategory.map(job=><JobCard key={job._id} job={job}></JobCard>)
                         }
                         </div>
+                        : 
+                        <div className='flex justify-center items-center'>
+                            <p className="text-center text-2xl font-bold my-auto shadow-lg">No jobs found in this category!</p>
+                        </div>
+                        
                     }
                 </div>
             }
