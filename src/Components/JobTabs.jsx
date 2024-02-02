@@ -18,7 +18,7 @@ const JobTabs = ({index}) => {
             <Tabs
         selectedIndex={tabIndex}
         onSelect={tabIndex => setTabIndex(tabIndex)}>
-        <div className="mx-5 md:mx-8">
+        <div className="px-2 md:px-5 mx-auto md:mx-8">
         <TabList>
           <Tab><span className={tabStyle}>All Jobs</span></Tab>
           <Tab><span className={tabStyle}>Full Time Jobs</span></Tab>

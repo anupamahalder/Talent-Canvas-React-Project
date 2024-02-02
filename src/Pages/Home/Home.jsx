@@ -70,7 +70,7 @@ const Home = () => {
                         <h1 id="typing-heading" data-text="Where Your Talents Shine Bright...">Where Your Talents Shine Bright...</h1>
                         <h1 className="text-center md:font-semibold text-gray-200 w-4/5 mx-auto my-6 md:text-xl">Your Gateway to Limitless Opportunities with Talent Canvas. Painting the Future of Your Career</h1>
                         {/* search  */}
-                        <div className="md:flex gap-2 px-2 mx-auto justify-center items-center w-full">
+                        <div className="md:flex gap-2 ml-6 md:ml-0 px-2 mx-auto justify-center items-center w-full">
                             <form onSubmit={hanldeSearch} className="mx-auto">
                                 <input className="py-2 lg:py-3 px-1 md:px-2 ml-2 md:ml-0 mr-2 rounded-md "
                                 type="text" name="search" placeholder="Search your job category..."/>
@@ -81,8 +81,8 @@ const Home = () => {
                 </div>
             </div>
             {/* job tab section  */}
-            <div className="mb-10">
-                <h1 className="my-10 drop-shadow-lg text-[#FF6348] text-center text-3xl md:text-4xl lg:text-5xl
+            <div className="mb-10 mx-auto">
+                <h1 className="my-10 mx-auto drop-shadow-lg text-[#FF6348] text-center text-3xl md:text-4xl lg:text-5xl
                  font-bold">Find Your Jobs</h1>
                 <JobTabs index={index}></JobTabs>
             </div>
