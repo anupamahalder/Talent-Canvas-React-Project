@@ -77,22 +77,22 @@ const Login = () => {
 
     const labelStyle = "before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-800 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-800 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-[#f3591d] peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-[#f17c4d] peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-[#f17c4d] peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-800";
     return (
-        <div className="md:flex justify-center items-center mx-auto min-h-screen py-20 lg:px-10">
+        <div className="md:flex justify-center items-center mx-auto min-h-screen px-6 md:py-20 lg:px-10">
             <Helmet>
                 <title>Talent Canvas | Login</title>
             </Helmet>
             <div className="-mb-1 flex justify-center mx-auto w-3/5 md:w-1/2">
                 <img src="https://blush.design/api/download?shareUri=io9vDIdwZEjiNCae&c=Hair_0%7Ed5e1d5-0.2%7Eff0048_Rainbow_0%7E008bf7-0.2%7E7ffc51_Skin_0%7Eb02d1c-0.2%7Efeb1cd&w=800&h=800&fm=png" alt="" />
             </div>
-            <div className="relative m-4 lg:mr-10 flex flex-col text-gray-700 bg-white shadow-lg w-80 md:w-96 rounded-xl bg-clip-border">
-                <div className="relative grid mx-4 mb-4 -mt-6 overflow-hidden text-white shadow-lg h-28 place-items-center rounded-xl bg-gradient-to-tr from-[#f3591d] to-[#ffbca2] bg-clip-border shadow-[#FEA47F]/40">
-                <h3 className="block font-sans text-3xl antialiased font-semibold leading-snug tracking-normal text-white">
+            <div className="relative m-4 lg:mr-10 mx-auto flex flex-col text-gray-700 bg-white shadow-lg w-80 md:w-96 rounded-xl bg-clip-border">
+                <div className="relative grid mx-4 md:mb-4 -mt-6 overflow-hidden text-white shadow-lg h-20 md:h-28 place-items-center rounded-xl bg-gradient-to-tr from-[#f3591d] to-[#ffbca2] bg-clip-border shadow-[#FEA47F]/40">
+                <h3 className="block font-sans text-2xl md:text-3xl antialiased font-semibold leading-snug tracking-normal text-white">
                     Sign In
                 </h3>
                 </div>
                 <form onSubmit={handleLogin}>
-                    <div className="flex flex-col gap-4 p-6">
-                    <div className="relative h-11 w-full mb-4 min-w-[200px]">
+                    <div className="flex flex-col gap-2 md:gap-4 px-6 py-4 md:py-6">
+                    <div className="relative md:h-11 w-full md:mb-4 min-w-[200px]">
                         <input
                         className= {inputStyle}
                         placeholder="" name="email" type="email" required
@@ -101,7 +101,7 @@ const Login = () => {
                         Email
                         </label>
                     </div>
-                    <div className="relative h-11 w-full min-w-[200px]">
+                    <div className="relative md:h-11 w-full min-w-[200px]">
                         <input
                         className={inputStyle}
                         placeholder=" " name="password" 
@@ -121,22 +121,22 @@ const Login = () => {
                     </div>
                     
                     </div>
-                    <div className="p-6 pt-4 mt-6">
+                    <div className="px-6 md:py-6 md:pt-4 mt-6">
                     <button
-                        className="block w-full select-none rounded-lg bg-gradient-to-tr from-[#d54107] to-[#f89f7c] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#f3591d]/20 transition-all hover:shadow-lg hover:shadow-[#f3591d]/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        className="block w-full select-none rounded-lg bg-gradient-to-tr from-[#d54107] to-[#f89f7c] py-2 md:py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#f3591d]/20 transition-all hover:shadow-lg hover:shadow-[#f3591d]/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="submit"
                         data-ripple-light="true"
                     >
-                        <span className="py-2 text-lg">Login</span>
+                        <span className="py-2 text-base md:text-lg">Login</span>
                     </button>
                 <button onClick={handleGoogleLogin}
-                    className="mt-4 block w-full select-none rounded-lg bg-gradient-to-tr from-[#081365] to-[#3e36b1] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#1e1784]/20 transition-all hover:shadow-lg hover:shadow-[#030b4a]/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    className="mt-2 md:mt-4 block w-full select-none rounded-lg bg-gradient-to-tr from-[#081365] to-[#3e36b1] py-2 md:py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#1e1784]/20 transition-all hover:shadow-lg hover:shadow-[#030b4a]/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     type="button"
                     data-ripple-light="true"
                 >
-                    <span className="py-2 text-lg">Login with Google</span>
+                    <span className="py-2 text-base md:text-lg">Login with Google</span>
                 </button>
-                <p className="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
+                <p className="flex justify-center mb-3 mt-2 md:mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
                     Donot have an account?
                     <Link className="text-red-800 font-semibold ml-1" to='/register'>Register</Link>
                 </p>

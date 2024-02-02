@@ -1,13 +1,13 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Swal from "sweetalert2";
-import useAuth from "../Hooks/useAuth";
 import { useState } from "react";
 import axios from "axios";
 import emailjs from '@emailjs/browser';
+import useAuth from "../../Hooks/useAuth";
 
 
-const JobDetailDisplay = () => {
+const HomeJobDisplay = () => {
     // load data 
     // destructure auth context 
     const {user,loginUser, allJob} = useAuth();
@@ -19,8 +19,6 @@ const JobDetailDisplay = () => {
     // declare a state 
     const [applicantNo, setApplicantNo] = useState(jobApplicantsNumber);
     const [isApplied, setIsApplied] = useState(job?.isApply);
-
-    const navigate = useNavigate();
 
     // handle apply button
     const handleApplyBtn = async () => {
@@ -145,7 +143,9 @@ const JobDetailDisplay = () => {
         <div className="relative mx-10 min-h-screen">
             <h1 className="mx-auto mt-10 mb-8 text-center font-bold uppercase text-xl md:text-2xl text-blue-800 drop-shadow-2xl">Details of the Job</h1>
             {/* arrow  */}
-            <FaArrowLeftLong onClick={()=>navigate(-1)} className="text-xl md:text-3xl text-gray-500 absolute top-5 md:top-10 md:left-4 cursor-pointer"/>
+            <Link to='/'>
+            <FaArrowLeftLong className="text-xl md:text-3xl text-gray-500 absolute top-5 md:top-10 md:left-4 cursor-pointer"/>
+            </Link>
         {/* job card  */}
         <div className="md:flex justify-between rounded-lg md:gap-10 md:bg-gray-50 mb-20">
             {/* image  */}
@@ -174,4 +174,4 @@ const JobDetailDisplay = () => {
     );
 };
 
-export default JobDetailDisplay;
+export default HomeJobDisplay;
