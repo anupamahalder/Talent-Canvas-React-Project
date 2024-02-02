@@ -1,8 +1,7 @@
-import axios from 'axios';
 import PropType from 'prop-types';
 import { useEffect, useState } from 'react';
 import useAuth from '../Hooks/useAuth';
-import HomeJobCard from '../Pages/Home/HomeJobCard';
+import JobCard from './JobCard';
 const JobDisplay = ({categoryName}) => {
     // declare state to hold job data 
     const [jobs, setJobs] = useState([]);
@@ -26,8 +25,8 @@ const JobDisplay = ({categoryName}) => {
         <div className='mx-auto mt-16'>
             <div className='px-10 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
             {
-                isShowAll ? jobs.map(job => <HomeJobCard key={job._id} job={job}></HomeJobCard>):
-                jobs.slice(0,6).map(job => <HomeJobCard key={job._id} job={job}></HomeJobCard>)
+                isShowAll ? jobs.map(job => <JobCard key={job._id} job={job}></JobCard>):
+                jobs.slice(0,6).map(job => <JobCard key={job._id} job={job}></JobCard>)
             }
             </div>
             {

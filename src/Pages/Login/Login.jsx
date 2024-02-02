@@ -61,7 +61,7 @@ const Login = () => {
                 text: 'You have successfully logged in',
                 icon: 'success'
             })
-            navigate(location?.state ? location?.state : '/');
+            navigate('/');
         })
         .catch(err=>{
             console.log(err.message);

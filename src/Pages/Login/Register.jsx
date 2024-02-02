@@ -68,7 +68,7 @@ const Register = () => {
                 text: 'You have successfully Registered',
                 icon: 'success'
             })
-            navigate(location?.state ? location?.state : '/');
+            navigate('/');
         })
         .catch(err=>{
             console.log(err.message);
