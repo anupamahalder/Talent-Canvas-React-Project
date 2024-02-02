@@ -23,7 +23,7 @@ const JobDisplay = ({categoryName}) => {
 
     return (
         <div className='mx-auto mt-16'>
-            <div className='px-10 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+            <div className='md:px-10 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
             {
                 isShowAll ? jobs.map(job => <JobCard key={job._id} job={job}></JobCard>):
                 jobs.slice(0,6).map(job => <JobCard key={job._id} job={job}></JobCard>)
