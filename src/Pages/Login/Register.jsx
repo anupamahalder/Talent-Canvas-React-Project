@@ -148,7 +148,7 @@ const Register = () => {
                     </div>
                     
                     </div>
-                    <div className="px-6 md:py-6 md:pt-4 mt-4 md:mt-6">
+                    <div className="px-6 md:py-6 md:pt-4 mt-4">
                     <button
                         className="block w-full select-none rounded-lg bg-gradient-to-tr from-[#00A378] to-[#01674c] py-2 md:py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-[#01674c]/20 transition-all hover:shadow-lg hover:shadow-[#01674c]/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="submit"
