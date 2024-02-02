@@ -52,28 +52,36 @@ const JobDetailDisplay = () => {
         return;
       }
 
-        const { value: formValues } = await Swal.fire({
-          title: "Apply for the Job",
-          html: `
-            <input id="swal-input1" class="swal2-input" value=${user?.displayName||loginUser?.name} disabled>
-            <input id="swal-input2" class="swal2-input" value=${user?.email} disabled>
-            <input id="swal-input3" class="swal2-input" required placeholder="Enter Resume Link">
-          `,
-          focusConfirm: false,
-          preConfirm: () => {
-            return {
-            //   username: document.getElementById("swal-input1").value,
-              email: document.getElementById("swal-input2").value,
-              resumeLink: document.getElementById("swal-input3").value,
-            };
-          },
-        });
+      const { value: formValues, isConfirmed } = await Swal.fire({
+        title: "Apply for the Job",
+        html: `
+          <input id="swal-input1" class="swal2-input" value=${user?.displayName || loginUser?.name} disabled>
+          <input id="swal-input2" class="swal2-input" value=${user?.email} disabled>
+          <input id="swal-input3" class="swal2-input" required placeholder="Enter Resume Link">
+        `,
+        focusConfirm: false,
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        cancelButtonText: 'Cancel',
+        preConfirm: () => {
+          return {
+            email: document.getElementById("swal-input2").value,
+            resumeLink: document.getElementById("swal-input3").value,
+          };
+        },
+      });
       
         if (formValues) {
           // Now you have the form values (username, email, and resumeLink)
         //   console.log(formValues);
           //if resume link is not valid then show error
-          if (isValidURL(formValues.resumeLink)) {
+          if(formValues.resumeLink==''){
+            Swal.fire({
+              icon: 'error',
+              text: 'Please provide the resume link!'
+            })
+          }
+          else if (isValidURL(formValues.resumeLink)) {
             const jobId = id;
             const applyJobData = {...formValues,jobId};
             axios.post('https://talent-canvas-server-side.vercel.app/appliedjob',applyJobData)
