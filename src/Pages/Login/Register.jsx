@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { Helmet } from "react-helmet";
-
+import AOS from 'aos';
 const Register = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -93,7 +93,7 @@ const Register = () => {
             <div className="-mb-2 flex justify-center mx-auto w-1/2">
                 <img src="https://blush.design/api/download?shareUri=mTIi5LmGVpQgxMCs&c=Hair_0%7E860a0c_Rainbow_0%7E008bf7_Skin_0%7Eef9e89&w=800&h=800&fm=png" alt="register image" />
             </div>
-            <div className="relative m-4 lg:mr-10 mx-auto flex flex-col text-gray-700 bg-white shadow-lg w-80 md:w-96 rounded-xl bg-clip-border">
+            <div data-aos="fade-left" className="relative m-4 lg:mr-10 mx-auto flex flex-col text-gray-700 bg-white shadow-lg w-80 md:w-96 rounded-xl bg-clip-border">
                 <div className="relative grid mx-4 md:mb-4 -mt-6 overflow-hidden text-white shadow-lg h-20 md:h-28 place-items-center rounded-xl bg-gradient-to-tr from-[#f3591d] to-[#ffbca2] bg-clip-border shadow-[#FEA47F]/40">
                 <h3 className="block font-sans text-2xl md:text-3xl antialiased font-semibold leading-snug tracking-normal text-white">
                     Register Now

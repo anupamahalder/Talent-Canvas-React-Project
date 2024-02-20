@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { Helmet } from "react-helmet";
-
+import AOS from 'aos';
 const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -84,7 +84,7 @@ const Login = () => {
             <div className="-mb-1 flex justify-center mx-auto w-3/5 md:w-1/2">
                 <img src="https://blush.design/api/download?shareUri=io9vDIdwZEjiNCae&c=Hair_0%7Ed5e1d5-0.2%7Eff0048_Rainbow_0%7E008bf7-0.2%7E7ffc51_Skin_0%7Eb02d1c-0.2%7Efeb1cd&w=800&h=800&fm=png" alt="" />
             </div>
-            <div className="relative m-4 lg:mr-10 mx-auto flex flex-col text-gray-700 bg-white shadow-lg w-80 md:w-96 rounded-xl bg-clip-border">
+            <div data-aos="fade-left" className="relative m-4 lg:mr-10 mx-auto flex flex-col text-gray-700 bg-white shadow-lg w-80 md:w-96 rounded-xl bg-clip-border">
                 <div className="relative grid mx-4 md:mb-4 -mt-6 overflow-hidden text-white shadow-lg h-20 md:h-28 place-items-center rounded-xl bg-gradient-to-tr from-[#f3591d] to-[#ffbca2] bg-clip-border shadow-[#FEA47F]/40">
                 <h3 className="block font-sans text-2xl md:text-3xl antialiased font-semibold leading-snug tracking-normal text-white">
                     Sign In
