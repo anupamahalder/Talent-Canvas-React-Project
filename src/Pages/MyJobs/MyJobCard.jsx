@@ -6,6 +6,7 @@ import { FaEye } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth';
+import AOS from 'aos';
 
 const MyJobCard = ({job, setMyJobData, myJobData}) => {
     const {setAllJob} = useAuth();
@@ -49,7 +50,7 @@ const MyJobCard = ({job, setMyJobData, myJobData}) => {
           });        
     }
     return (
-        <div className='pb-10 mx-auto'>
+        <div className='pb-10 mx-auto' data-aos="zoom-in-up">
             <div className="relative flex flex-col text-gray-700 bg-white shadow-md w-72 md:w-80 lg:w-[350px] rounded-xl bg-clip-border">
             <div className="relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
                 <img

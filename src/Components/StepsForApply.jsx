@@ -1,10 +1,10 @@
 import React from 'react';
 import { TiTick } from "react-icons/ti";
-
+import AOS from 'aos';
 
 const StepsForApply = () => {
     return (
-        <div className='lg:flex justify-around my-6 md:my-10 md:px-2 mx-auto'>
+        <div data-aos="zoom-in-right" className='lg:flex justify-around my-6 md:my-10 md:px-2 mx-auto'>
             <div className='md:flex-1 w-5/6 mx-auto md:w-full relative pb-10 md:pb-0'>
                 <img src="https://www.shutterstock.com/image-vector/young-man-working-on-laptop-600nw-2137930253.jpg" alt="" />
                 <div className='bg-gray-200 rounded-xl absolute bottom-2 right-24 md:bottom-36 lg:bottom-1/3 md:right-36 w-[140px] md:w-[180px] p-2'>
@@ -12,7 +12,7 @@ const StepsForApply = () => {
                     <h1 className='text-blue-700 text-2xl md:text-3xl font-bold'>150+ Jobs</h1>
                 </div>
             </div>
-            <div className='md:flex-1 flex-col justify-center items-center md:mt-12'>
+            <div data-aos="zoom-in-left" className='md:flex-1 flex-col justify-center items-center md:mt-12'>
                 <div className='flex gap-2 justify-center'>
                     <span className='text-[90px] md:text-[140px] lg:text-[160px] font-extrabold text-blue-700'>3</span>
                     <div className='pt-8 md:pt-16'>

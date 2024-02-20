@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import useAuth from '../Hooks/useAuth';
 import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2';
-
+import AOS from 'aos';
 const ContactUs = () => {
     const {user, loginUser} = useAuth();
     const form = useRef();
@@ -31,10 +31,10 @@ const ContactUs = () => {
     return (
         <div className='mx-auto'>
             <section className="body-font md:flex md:justify-between md:items-center relative md:px-10">
-            <div className="flex-1 w-3/4 md:w-full mx-auto">
+            <div className="flex-1 w-3/4 md:w-full mx-auto" data-aos="flip-right">
                 <img src="https://blush.design/api/download?shareUri=9N70qQtJZ-af2LTu&c=Hair_0%7E3164cf-0.2%7Efe5c4f_Skin_0%7E8c72cb-0.2%7Eef9e89&w=800&h=800&fm=png" alt="" />
             </div>
-            <div className="container -mt-12 md:mt-0 px-5 md:py-12 mx-auto md:flex-1 flex drop-shadow-2xl">
+            <div data-aos="flip-right" className="container -mt-12 md:mt-0 px-5 md:py-12 mx-auto md:flex-1 flex drop-shadow-2xl">
                 <div className="bg-white rounded-lg p-8 flex flex-col md:ml-auto lg:w-4/5 mt-10 md:mt-0 relative z-10 shadow-md">
                 <h2 className="text-blue-800 text-2xl lg:text-3xl mb-4 font-bold title-font">Feel free to contact us...💙</h2>
                 <p className="leading-relaxed mb-5 text-gray-600">We welcome your feedback, suggestions, or queries anytime - your input is important to us!</p>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-
+import AOS from 'aos';
 const Blogs = () => {
     const [readMore, setReadMore] = useState(false);
     //declare a state to change button name
@@ -61,7 +61,7 @@ const Blogs = () => {
             <div className="min-h-screen">
                 {
                     blogContent.map(item=>
-                        <div key={item.id} className="px-2 md:px-10 py-4">
+                        <div data-aos="fade-up" key={item.id} className="px-2 md:px-10 py-4">
                             <h1 className='text-2xl px-2 font-bold text-gray-700'>{item.id}. {item.title}</h1>
                             <p className='mt-6 mb-12 md:text-xl text-gray-500 px-4'>{item.content}</p>
                             <hr />
