@@ -96,7 +96,6 @@ const JobDetailDisplay = () => {
                     // increment applicant value by 1 to database 
                     axios.post(`https://talent-canvas-server-side.vercel.app/update-job-increment/${id}`)
                     .then(data=>{
-                      console.log(data.data);
                       // update applicant number in the UI
                       setApplicantNo(applicantNo+1);
                       // update the apply button 

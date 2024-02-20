@@ -88,8 +88,7 @@ const AddJobs = () => {
               }
           });
       };
-  
-      img.src = jobBannerImageUrl;
+    img.src = jobBannerImageUrl;
   };
   
     // handle reset a form 
