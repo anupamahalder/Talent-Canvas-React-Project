@@ -1,6 +1,7 @@
 # Talent Canvas:
 Talent Canvas is a MERN stack project for job hunting website, where users can be authenticated by login/sign in using Firebase. Users can search for multiple jobs and can filter jobs based on category and etc. The client side is created with React Js and the backend side is made with MongoDB, Express Js and Node Js.
-Live Link: ( https://storied-dasik-a9866e.netlify.app/ )
+
+### Live Link: ( https://talent-canvas.netlify.app/ )
 
 ## Features of Talent Canvas:
 1. Users can apply for jobs just by putting resume link after login to the website.
